@@ -45,19 +45,13 @@ function pesquisa(){
 							window.location.replace("prevenda.html");
 						}else{
 							bootbox.confirm({ 
-						  title: "Erro de comanda!",
-						  message: "Comanda não cadastrada",
-						  size: "small",	
-						  callback: function(result){						  
-							if(result == null || result == ""){
-								toastWarning("Comanda não cadastrada!");
-							} else{
-								toastWarning("Comanda não cadastrada!");
-							}
-							
-						  }
-						});							
-							toastError("Comanda não cadastrada");
+                                title: "Aviso",
+                                message: resposta.mensagem,
+                                size: "small",	
+                                callback: function(result){						  
+                                    
+                                }
+                            });
 						}
 				},
 				error: function (erro) {								
