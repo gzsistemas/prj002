@@ -62,11 +62,10 @@ function pesquisar() {
 	var endServ = removerAspas(storage.getItem("endereco-servidor"));
 	
 	if(produto == ""){
-		toastInfoNoHide("Aguarde... pesquisando! ");
-		toastError("Grande Fluxo de dados! Operação lenta!");
+		toastInfoNoHide("Aguarde... pesquisando!");
+		//toastError("Grande Fluxo de dados! Operação lenta!");
 		consultaDescricao();
 	}else {
-		toastInfo("Resultados da pesquisa por:" + " " + produto);		
 		if(isNaN(produto)){
 			toastInfoNoHide("Aguarde... pesquisando!");
 				consultaDescricao(endServ,produto);
@@ -140,7 +139,7 @@ function abrePainel(codigo) {
 	  callback: function(resultInfAdd){
 		  
 		if(resultInfAdd == null || resultInfAdd == ""){
-			toastWarning("Produto sem Informações Adicionais!");
+			//toastWarning("Produto sem Informações Adicionais!");
 			storage.setItem("infAddTemp", JSON.stringify("-"));
 		} else{
 			var resultadoInfAdd = resultInfAdd.split(" ");
