@@ -19,7 +19,8 @@
 function consultaDescricao(){	
 	var storage = window.localStorage;
 	var produto = removerAspas(storage.getItem("produto"));
-	var endServ = storage.getItem("endereco-servidor");
+	//var endServ = storage.getItem("endereco-servidor");
+    var endServ = enderecoFormatado();
 	
 	$.ajax({
 		url: "http://"+endServ+"/services/cadastro/produto/listar?loja=1&limite=50&desc="+produto+"",

@@ -123,7 +123,8 @@ function abrePainel(produto) {
 function adiciona(destino) {
 	var itensComanda = [];
 	var storage = window.localStorage;
-	var endServ = removerAspas(storage.getItem("endereco-servidor"));
+	//var endServ = removerAspas(storage.getItem("endereco-servidor"));
+    var endServ = removerAspas(enderecoFormatado());
 	var comanda = removerAspas(storage.getItem("comanda"));
 	var pedAnt = storage.getItem("itsComanda");
 	if(pedAnt == ""){

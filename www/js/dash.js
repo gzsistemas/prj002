@@ -7,7 +7,8 @@
 */
 function pesquisa(){
 	var storage = window.localStorage;
-	var endServ = storage.getItem("endereco-servidor");
+	//var endServ = storage.getItem("endereco-servidor");
+    var endServ = enderecoFormatado();
 	var comanda = $("#txt-com").val();
 	
 	if(checarVazio(comanda) != true){
