@@ -54,6 +54,10 @@ function onLoad() {
     var usuario = getUsuario();
     $("#txt-usuario").val(usuario.nomeUsuario);
 }
+
+function configs() {
+  window.location.replace("configs.html");
+}
 /*
  * FIM DA DECLARAÇÃO DE FUNÇÕES
  */
@@ -63,4 +67,8 @@ function onLoad() {
  */
 $("#btn-login").click(function (e) {
     login();
+});
+
+$("#btn-configs").click(function (e) {
+    configs();
 });
