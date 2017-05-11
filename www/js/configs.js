@@ -2,7 +2,7 @@
  *
  *  configs.js
  *
- * última atualização
+ * última atualização 10/05/2017
  */
  var conexaoSegura = false;
 
@@ -26,7 +26,7 @@ function onLoad() {
 
 function salvar() {
   var storage = window.localStorage;
-  alert(conexaoSegura);
+  //alert(conexaoSegura);
   storage.setItem("ConecSeg", JSON.stringify(conexaoSegura));
   toastInfoNoHide("Configurações salvas!");
   window.location.replace("login.html");
