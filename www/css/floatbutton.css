@@ -77,3 +77,25 @@ a.float:hover + div.label-container{
   visibility: visible;
   opacity: 1;
 }
+
+a.float-danger + div.label-container{
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s ease;
+}
+
+a.float-danger:hover + div.label-container{
+	visibility: visible;
+	opacity: 1;
+}
+
+a.float-warning + div.label-container{
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s ease;
+}
+
+a.float-warning:hover + div.label-container{
+	visibility: visible;
+	opacity: 1;
+}
