@@ -8,8 +8,20 @@
 function pesquisa(){
 	var storage = window.localStorage;
 	//var endServ = storage.getItem("endereco-servidor");
-    var endServ = enderecoFormatado();
+  var endServ = enderecoFormatado();
 	var comanda = $("#txt-com").val();
+
+	var conecSeg = storage.getItem("ConecSeg");
+
+	var URL = "";
+
+	if(conecSeg == "true"){
+		URL = "https://"+endServ+"/services/comanda/consultar?numero="+comanda+"";
+	}else {
+		URL = "http://"+endServ+"/services/comanda/consultar?numero="+comanda+"";
+	}
+
+ 	alert(URL);
 
 	if(checarVazio(comanda) != true){
 		toastInfoNoHide("Pesquisando comanda...Aguarde!");

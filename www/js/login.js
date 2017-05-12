@@ -20,6 +20,17 @@ function login() {
     }
     setEnderecoServidor($("#txt-cnpj").val());
     toastInfoNoHide("Aguarde... Fazendo login.");
+
+    var conecSeg = storage.getItem("ConecSeg");
+
+  	var URL = "";
+
+  	if(conecSeg == "true"){
+  		URL = "https://"+enderecoFormatado()+"/services/login";
+  	}else {
+  		URL = "http://"+enderecoFormatado()+"/services/login";
+  	}
+
     $.ajax({
         url: "http://"+enderecoFormatado()+"/services/login",
         headers: {

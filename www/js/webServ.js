@@ -3,90 +3,111 @@
 */
 
 /*
-		Consulta de Produtos descrição 
-	
+		Consulta de Produtos descrição
+
 	Dados requisitados:
 	- endServ > Enderço do servido onde está alocado o WebService;
-	
+
 	- produto > Resultado do campo onde o cliente digitou;
-	
+
 	Dados resultantes:
 	- produtos > Array dos itens que resultaram da pesquisa feita com a descrição buscada;
-	
+
 	OBS:
 	- Todos os toast indicam como está a comunicação com o WebService;
-*/	
-function consultaDescricao(){	
+*/
+function consultaDescricao(){
 	var storage = window.localStorage;
 	var produto = removerAspas(storage.getItem("produto"));
 	//var endServ = storage.getItem("endereco-servidor");
-    var endServ = enderecoFormatado();
-	
+  var endServ = enderecoFormatado();
+
+	var conecSeg = storage.getItem("ConecSeg");
+
+	var URL = "";
+
+	if(conecSeg == "true"){
+		URL = "https://"+endServ+"/services/cadastro/produto/listar?loja=1&limite=50&desc="+produto+"";
+	}else {
+		URL = "http://"+endServ+"/services/cadastro/produto/listar?loja=1&limite=50&desc="+produto+"";
+	}
+
 	$.ajax({
-		url: "http://"+endServ+"/services/cadastro/produto/listar?loja=1&limite=50&desc="+produto+"",
+		url: URL,
 		headers: {
 			"Accept":"application/json"
 		},
 		data: {
-							
+
 		},
-		success: function (resposta) {				
+		success: function (resposta) {
 			var isOk = resposta.ok;
 				if(isOk) {
 					var prods = [];
 					prods = resposta.extra.lista_produtos.produto;
-					
+
 						if(prods == ""){
 							toastError("Não há produtos com essa pesquisa!");
-						}else{									
+						}else{
 							for(var i = 0; i<prods.length; i++){
 								produtos.push(new Produto(i,removerAspas(JSON.stringify(prods[i].cdprod)),removerAspas(JSON.stringify(prods[i].codbarra)),removerAspas(JSON.stringify(prods[i].descricao)),"1","1","1",removerAspas(JSON.stringify(prods[i].termvenda)),"0.00", "0.00", "0.00", "-", "N", "0.00", "0.00", "N"));
 							}
-							
-							carregarItens(produtos);	
+
+							carregarItens(produtos);
 						}
-				}else{				
-					toastError("Não há produtos com essa pesquisa!");									
+				}else{
+					toastError("Não há produtos com essa pesquisa!");
 				}
 		},
-		error: function (erro) {								
+		error: function (erro) {
 			toastError("Não foi possível realizar a pesquisa!");
 		}
 	});
 }
 /*
-		Consulta de Produtos Código 
-	
+		Consulta de Produtos Código
+
 	Dados requisitados:
 	- endServ > Enderço do servido onde está alocado o WebService;
-	
+
 	- produto > Resultado do campo onde o cliente digitou;
-	
+
 	Dados resultantes:
 	- produtos > Array do item que resultou da pesquisa feita com o código buscado;
-	
+
 	OBS:
 	- Todos os toast indicam como está a comunicação com o WebService;
-	
+
 */
 function consultaCodigo(){
 	var storage = window.localStorage;
 	var produto = removerAspas(storage.getItem("produto"));
 	var endServ = storage.getItem("endereco-servidor");
 	//alert(produto);
+	//
+	var conecSeg = storage.getItem("ConecSeg");
+
+	var URL = "";
+
+	if(conecSeg == "true"){
+		URL = "https://"+endServ+"/services/cadastro/produto/consultar?loja=1&codigo="+produto+"";
+	}else {
+		URL = "http://"+endServ+"/services/cadastro/produto/consultar?loja=1&codigo="+produto+"";
+	}
+
 	$.ajax({
-		url: "http://"+endServ+"/services/cadastro/produto/consultar?loja=1&codigo="+produto+"",
+		url: URL,
 		headers: {
 			"Accept":"application/json"
 		},
 		data: {
-			
+
 		},
 		success: function (resposta) {
 			var isOk = resposta.ok;
-				if(isOk) {	
+				if(isOk) {
 					 var prods = resposta.extra.produto;
-					 produtos.push(new Produto(removerAspas(JSON.stringify(prods.id)),removerAspas(JSON.stringify(prods.cdprod)),removerAspas(JSON.stringify(prods.codbarra)),removerAspas(JSON.stringify(prods.descricao)),"1","1","1",removerAspas(JSON.stringify(prods.termvenda)),"0.00", "0.00", "0.00", "", "N", "0.00", "0.00", "N"));				
+					 produtos.push(new Produto(removerAspas(JSON.stringify(prods.id)),removerAspas(JSON.stringify(prods.cdprod)),removerAspas(JSON.stringify(prods.codbarra)),removerAspas(JSON.stringify(prods.descricao)),"1","1","1",removerAspas(JSON.stringify(prods.termvenda)),"0.00", "0.00", "0.00", "", "N", "0.00", "0.00", "N"));
 					 carregarItens(produtos);
 				}else{
 					toastError("Não há produtos com essa pesquisa!");
@@ -99,14 +120,14 @@ function consultaCodigo(){
 }
 
 /*
-		Carregamento dos Produtos  
-	
+		Carregamento dos Produtos
+
 	Dados requisitados:
 	- arr > Array dos produtos que serão carregados;
-	
+
 	Dados resultantes:
 	- Nenhum > Carregamento na tela;
-	
+
 	OBS:
 	- Deve haver uma table na página que será carregada;
 
@@ -119,18 +140,18 @@ function carregarItens(arr){
 		tr.find(".coluna-descricao").text(arr.codigo + " " + "-" + " " + arr.descricao);
 		$(tr).append($("<td class='coluna-preco'>"));
 		tr.find(".coluna-preco").text(arr.preco);
-		$(tr).appendTo($("#tb-prods"));	
+		$(tr).appendTo($("#tb-prods"));
 	});
 }
 /*
-		Carregamento da Comanda  
-	
+		Carregamento da Comanda
+
 	Dados requisitados:
 	- arr > Array da Comanda que será carregada;
-	
+
 	Dados resultantes:
 	- Nenhum > Carregamento na tela;
-	
+
 	OBS:
 	- Deve haver uma table na página que será carregada;
 
@@ -145,6 +166,6 @@ function carregarComanda(arr){
 		tr.find(".coluna-qtd").text(arr[0][i].quantidade);
 		$(tr).append($("<td class='coluna-infAdd'>"));
 		tr.find(".coluna-infAdd").text(arr[0][i].infAdd);
-		$(tr).appendTo($("#tb-prods"));	
+		$(tr).appendTo($("#tb-prods"));
 	});
 }
