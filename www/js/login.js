@@ -32,7 +32,7 @@ function login() {
   	}
 
     $.ajax({
-        url: "http://"+enderecoFormatado()+"/services/login",
+        url: URL,
         headers: {
             "Accept":"application/json"
         },
