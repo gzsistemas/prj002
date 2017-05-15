@@ -69,6 +69,10 @@ function onLoad() {
 function configs() {
   window.location.replace("configs.html");
 }
+
+function teste() {
+
+}
 /*
  * FIM DA DECLARAÇÃO DE FUNÇÕES
  */
