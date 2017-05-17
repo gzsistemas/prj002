@@ -1,6 +1,6 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" 
         id="br.com.gzsistemas.prevenda"
-        version="1.3.2">
+        version="2.0.0">
   <name>Pré Venda</name>
   <description>Aplicativo para lançar itens em comandas</description>
   <author href="http://gzcloud.com.br" email="suporte@gzcloud.com.br">GZ Sistemas - GZ Cloud</author>
