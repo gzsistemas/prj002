@@ -21,7 +21,7 @@ function pesquisa(){
 		URL = "http://"+endServ+"/services/comanda/consultar?numero="+comanda+"";
 	}
 
- 	alert(URL);
+ 	//alert(URL);
 
 	if(checarVazio(comanda) != true){
 		toastInfoNoHide("Pesquisando comanda...Aguarde!");
