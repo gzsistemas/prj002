@@ -25,14 +25,14 @@ function login() {
 
   	var URL = "";
 
-  	if(conecSeg == "true"){
-  		URL = "https://"+enderecoFormatado()+"/services/login";
+  	if(conecSeg != "true"){
+  		URL = "http://"+enderecoFormatado()+"/services/login";
   	}else {
-  		URL = ("http://"+enderecoFormatado()+"/services/login");
+  		URL = "https://"+enderecoFormatado()+"/services/login";
   	}
 
     $.ajax({
-        url:"http://"+enderecoFormatado()+"/services/login",
+        url:URL,
         headers: {
             "Accept":"application/json"
         },
