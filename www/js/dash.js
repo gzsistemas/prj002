@@ -80,10 +80,10 @@ function pesquisa(){
 
 function onLoad() {
 	var storage = window.localStorage;
-	//var ip = storage.getItem("endereco-servidor");
-	$("#txt-servidor").text(enderecoFormatado());
+	var ip = storage.getItem("endereco-servidor");
+	$("#txt-servidor").text(ip);
+	$("#txt-vendedor").text("1 Francisco");
 }
-
 
 /*
 *	Botão de Pesquisa no dash
