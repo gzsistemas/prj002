@@ -81,8 +81,8 @@ function pesquisa(){
 function onLoad() {
 	var storage = window.localStorage;
 	var ip = storage.getItem("endereco-servidor");
-	$("#txt-servidor").text(ip);
-	$("#txt-vendedor").text("1 Francisco");
+	$("#txt-servidor").text(enderecoFormatado());
+	$("#txt-vendedor").text("1 - Franscico");
 }
 
 /*

@@ -37,11 +37,16 @@
     <div id="page-container">
         <nav id="page-leftbar" role="navigation">
             <ul class="acc-menu" id="sidebar">
-                <li><a id="btn-menu" href="dash.html"><i class="fa fa-home"></i> <span>Menu principal</span></a></li>
-                <li><a href=""><i class="fa fa-edit"></i> <span>Manutenção de comanda</span></a></li>
-                    <li><a id="btn-pesquisa"><i class="fa fa-search"></i> <span>Pesquisar comanda</span></a></li>
-                        <li><a id="btn-uCom"><i class="fa fa-backward"></i> <span>Última comanda</span></a></li>				
+                <li><a href="javascript:;"><i class="fa fa-edit"></i> <span>Manutenção de comanda</span></a>
+                    <ul class="acc-menu">
+                        <li><a href=""></a></li>
+                        <li><a id="btn-pesquisa"><i class="fa fa-search"></i> <span>Pesquisar comanda</span></a></li>
+                        <li><a id="btn-uCom"><i class="fa fa-backward"></i> <span>Última comanda</span></a></li>
                         <li><a id="btn-limpar"><i class="fa fa-trash-o"></i> <span>Limpar Comanda</span></a>
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <li><a id="btn-menu" href="dash.html"><i class="fa fa-home"></i> <span>Menu principal</span></a></li>
                 <li><a href="pdvconf.html"><i class="fa fa-gear"></i> <span>Opções</span></a></li>
                 <li><a href="sobre.html"><i class="fa fa-info"></i> <span>Sobre</span></a></li>
             </ul>
@@ -64,7 +69,7 @@
                                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Descrição: clique para ordenar" style="width: 50%;">Descrição</th>
                                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Preço: clique para ordenar" style="width: 20%;">Preço</th>
                                             <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Qtd: clique para ordenar" style="width: 20%;">Qtd.</th>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="InfAdd: clique para ordenar" style="width: 20%;">Inf. Add.</th>							
+                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="InfAdd: clique para ordenar" style="width: 20%;">Inf. Add.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,9 +77,9 @@
                                             <td id="txt-desc" style="display: none"></td>
                                             <td id="txt-precos" style="display: none"></td>
                                             <td id="txt-qtd" style="display: none"></td>
-                                            <td id="txt-infadd" style="display: none"></td>							
+                                            <td id="txt-infadd" style="display: none"></td>
                                         </tr>
-                                    </tbody>                                    
+                                    </tbody>
                                 </table>
 
                                 <div id="secao-final">
@@ -106,7 +111,7 @@
 													<button id="btn-visualizar" class="btn btn-block btn-green btn-lg"><i class="fa fa-edit"></i>  Confirmar e visualizar</button>
 												</div>
 											</div>
-												
+
 											<div class="form-group">
 												<div class="col-md-12" style="margin-top: 15px;">
 												    <div class="info-tiles tiles-info">
@@ -177,7 +182,7 @@
 	<script type='text/javascript' src='js/prods.js'></script>
     <script type='text/javascript' src='js/util.js'></script>
     <script type='text/javascript' src='js/manut.js'></script>
-    
+
 
 </body>
 
