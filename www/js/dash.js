@@ -81,13 +81,23 @@ function pesquisa(){
 function onLoad() {
 	var storage = window.localStorage;
 	var ip = storage.getItem("endereco-servidor");
+	var cod = storage.getItem("vendedor");
+	var nome = "Franscico";
 	$("#txt-servidor").text(enderecoFormatado());
-	$("#txt-vendedor").text("1 - Franscico");
+	$("#txt-vendedor").text(cod +" - " + nome);
+}
+
+function troca() {
+	window.location.replace("trocaOperador.html");
 }
 
 /*
 *	Botão de Pesquisa no dash
 */
+$("#txt-vendedor").click(function (e) {
+	troca();
+});
+
 $("#btn-ok").click(function (e) {
     pesquisa();
 });
