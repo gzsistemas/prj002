@@ -203,10 +203,6 @@ $("#btn-visualizar").click(function (e) {
     visualiza();
 });
 
-$("#btn-voltar").click(function (e) {
-    window.location.replace("dash.html");
-});
-
 $("#btn-combo").click(function (e) {
     definirCategoria("c");
 });
