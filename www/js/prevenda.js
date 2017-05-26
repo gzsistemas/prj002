@@ -36,8 +36,8 @@ function onLoad(){
 			tr.find(".coluna-qtd").text(hey[i].quantidade);
 			$(tr).append($("<td class='coluna-infAdd'>"));
 			tr.find(".coluna-infAdd").text(hey[i].infAdd);
-			$(tr).appendTo($("#tb-prods"));			
-		}		
+			$(tr).appendTo($("#tb-prods"));
+		}
 	}
 }
 
@@ -64,7 +64,7 @@ function pesquisar() {
 	var its = "["+it+"]";
 	var itens = JSON.parse(its);
 	var com = obterComanda();
-	
+
 	if($(".coluna-descricao").text() == ""){
 		var prod = $("#txt-ean").val();
 		var item = prod.toUpperCase();
@@ -72,17 +72,17 @@ function pesquisar() {
 		storage.setItem("produto", JSON.stringify(item));
 		storage.setItem("pedidoP"+com, "");
 		window.location.replace("pesquisa.html");
-	} else{	
-			
+	} else{
+
 		if(itens == ""){
 			var prod = $("#txt-ean").val();
 			var item = prod.toUpperCase();
 			storage.setItem("controle", JSON.stringify(pesquisa));
 			storage.setItem("produto", JSON.stringify(item));
 			storage.setItem("pedidoP"+com, "");
-			window.location.replace("pesquisa.html");		
+			window.location.replace("pesquisa.html");
 		} else{
-			storage.setItem("pedidoP" + com, JSON.stringify(itens));	
+			storage.setItem("pedidoP" + com, JSON.stringify(itens));
 			var prod = $("#txt-ean").val();
 			var item = prod.toUpperCase();
 			storage.setItem("controle", JSON.stringify(pesquisa));
@@ -90,35 +90,28 @@ function pesquisar() {
 			storage.setItem("pedidoP"+com, "");
 			window.location.replace("pesquisa.html");
 		}
-		
+
 	}
 }
 
-
-function abrePainel(produto) {
+/*
+function abrePainel(codigo) {
 	var storage = window.localStorage;
 	var com = obterComanda();
 	bootbox.confirm({
 	size: "small",
-	title: "Exclusão de item",	
+	title: "Exclusão de item",
 	message: "Excluir item selecionado?",
 	callback:function(result){
 			if(result == true){
-				var cod = [];
-				for(var i = 0; i<itens.length; i++){
-					cod.push(itens[i].codigo);
-				}
-				var index = cod.indexOf(produto.codigo);
-				itens.splice(index, 1);	
-				storage.setItem("pedidoP" + com, JSON.stringify(itens));
-				storage.setItem("produtos", JSON.stringify(itens));
-				window.location.replace("prevenda.html");
+
 			} else{
-				window.location.replace("prevenda.html");
+
 			}
-		}	
+		}
 	});
 }
+*/
 
 function adiciona(destino) {
 	var itensComanda = [];
@@ -131,24 +124,24 @@ function adiciona(destino) {
 		var comand = storage.getItem("itsCom");
 		var coma = "["+comand+"]";
 		var com = JSON.parse(coma);
-		
+
 	}else{
 		var comand = storage.getItem("itsCom");
 		var pedido = pedAnt.concat(",").concat(comand);
 		var coma = "["+pedido+"]";
 		var com = JSON.parse(coma);
-		
+
 	}
-	
+
 	var envio = 0;
-	
+
 	for(var i = 0; i<com.length; i++){
-		itensComanda.push(new ItemComanda(i, comanda,(i+1) ,com[i].codigo, com[i].ean,com[i].descricao,com[i].codigoVend,com[i].tipoPreco,com[i].quantidade,com[i].preco,com[i].percentualDesconto,com[i].percentualAcrescimo,com[i].descontoMultiplo,com[i].infAdd,com[i].cancelado,com[i].valorDesconto,com[i].valorAcrescimo,com[i].impresso));	
+		itensComanda.push(new ItemComanda(i, comanda,(i+1) ,com[i].codigo, com[i].ean,com[i].descricao,com[i].codigoVend,com[i].tipoPreco,com[i].quantidade,com[i].preco,com[i].percentualDesconto,com[i].percentualAcrescimo,com[i].descontoMultiplo,com[i].infAdd,com[i].cancelado,com[i].valorDesconto,com[i].valorAcrescimo,com[i].impresso));
 	}
 	toastInfoNoHide("Enviando comanda...aguarde!");
 	$.ajax({
 		url: "http://"+endServ+"/services/comanda/enviar",
-		method:"POST",	
+		method:"POST",
 			headers: {
 				"Content-Type":"application/x-www-form-urlencoded",
 				"Accept":"application/json"
@@ -156,40 +149,44 @@ function adiciona(destino) {
 			data: {
 				"data":JSON.stringify(itensComanda)
 			},
-			
+
 			success: function (resposta) {
 				var isOk = resposta.ok;
 					if(isOk) {
 						toastInfo("Comanda Enviada com sucesso!");
 						storage.removeItem("itsCom");
 						storage.removeItem("pedidoP"+comanda);
-						
+
 						storage.setItem("ultimaComanda", JSON.stringify(comanda));
 						storage.removeItem("comanda");
 						window.location.replace(destino);
-					}else{	
-						toastError("Não foi possível enviar comanda!");									
+					}else{
+						toastError("Não foi possível enviar comanda!");
 					}
 			},
-			error: function (erro) {								
+			error: function (erro) {
 				toastError("Não foi possível realizar o envio! Verifique Internet");
 			}
 	});
-	
+
 }
 
 /*
 *	Fim das declarações
 */
 
+/*
 $("#tb-prods").on("click", '.coluna-descricao', function(event){
 	var index = $(this).index();
 	var col1value = $(this).parent().find(".coluna-descricao").first().text();
-	var codigo = col1value.split(" ", 1);
-	var produto = getProduto(codigo);
-	abrePainel(produto);
+	var teste = col1value.trim();
+	alert(teste);
+	var codigo = teste.split(" ", 1);
+	//var produto = getProduto(codigo);
+	alert(codigo);
+	abrePainel(codigo);
 });
-
+*/
 /*
 *	Botão na tela de Prevenda que carrega a finalização
 */
@@ -229,4 +226,3 @@ $("#btn-lanches").click(function (e) {
 $("#btn-sopas").click(function (e) {
 	definirCategoria("sp");
 });
-
