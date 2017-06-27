@@ -19,10 +19,9 @@ function login() {
   toastInfoNoHide("Aguarde... Fazendo login!");
   var status = getStatus();
   var ssl = getSSL();
-  // Criação do token
-  var usr = getUser();
-  var senha = getSenha();
-  var token = criarToken(usr,senha);
+  // Criação do token  
+  var token = gerarToken();
+
   // ------
   var URL = "";
   // Parte que decide qual url usar
@@ -42,7 +41,7 @@ function login() {
   $.ajax({
     url:URL,
     headers: {
-      "Accept":"application/json"      
+      "Accept":"application/json"
     },
     data: {
     },
