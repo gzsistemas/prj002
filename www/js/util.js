@@ -299,6 +299,28 @@ function setSSL(ssl){
 	storage.setItem("ssl", JSON.stringify(ssl));
 }
 
+function getVendedorNome(){
+	var storage = window.localStorage;
+	var vendedor = JSON.parse(storage.getItem("vendedorNome"));
+	return vendedor;
+}
+
+function setVendedorNome(vendedor){
+	var storage = window.localStorage;
+	storage.setItem("vendedorNome", JSON.stringify(vendedor));
+}
+
+function getVendedorCodigo(){
+	var storage = window.localStorage;
+	var codigo = JSON.parse(storage.getItem("vendedorCodigo"));
+	return codigo;
+}
+
+function setVendedorCodigo(codigo){
+	var storage = window.localStorage;
+	storage.setItem("vendedorCodigo", JSON.stringify(codigo));
+}
+
 function logout(){
 	var storage = window.localStorage;
 	storage.removeItem("user");

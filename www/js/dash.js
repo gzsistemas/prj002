@@ -79,12 +79,21 @@ function pesquisa(){
 }
 
 function onLoad() {
-	var storage = window.localStorage;
-	var ip = storage.getItem("endereco-servidor");
-	var cod = storage.getItem("vendedor");
-	var nome = "Franscico";
-	$("#txt-servidor").text(enderecoFormatado());
-	$("#txt-vendedor").text(cod +" - " + nome);
+	var nomeVend = getVendedorNome();
+	if(nomeVend == null){
+		$("#txt-vendedor").text("Nenhum");
+	} else{
+		var cod = getVendedorCodigo();
+		$("#txt-vendedor").text(cod +" - " + nomeVend);
+	}
+
+	var status = getStatus();
+	if(status == true){
+		var server = "www.gzcloud.com.br";
+	}else {
+		var server = getUrlbase();
+	}
+	$("#txt-servidor").text(server);	
 }
 
 function troca() {
@@ -94,7 +103,7 @@ function troca() {
 /*
 *	Botão de Pesquisa no dash
 */
-$("#txt-vendedor").click(function (e) {
+$("#vendedor").click(function (e) {
 	troca();
 });
 
