@@ -19,7 +19,7 @@ function login() {
   toastInfoNoHide("Aguarde... Fazendo login!");
   var status = getStatus();
   var ssl = getSSL();
-  // Criação do token  
+  // Criação do token
   var token = gerarToken();
 
   // ------
