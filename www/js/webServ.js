@@ -89,11 +89,25 @@ function consultaCodigo(){
 
 	var URL = "";
 
-	if(conecSeg == "true"){
-		URL = "https://"+endServ+"/services/cadastro/produto/consultar?loja=1&codigo="+produto+"";
-	}else {
-		URL = "http://"+endServ+"/services/cadastro/produto/consultar?loja=1&codigo="+produto+"";
+	var usr = getUser();
+	var senha = getSenha();
+  var token = criarToken(usr,senha);
+	var empresa = getEmpresa();
+	var urlBaseCloud = "http://homologacao.gzcloud.com.br/flex-e";
+	var urlBase = getUrlbase();
+	var cloud = getStatus();
+
+	if(cloud == "true"){
+			URL = urlBase + "/services/prevenda_mobile/cadastro/produto?token="+ token + "&empresa="+ empresa + "&codigo="+ produto;
+	} else {
+		if(conecSeg == "true"){
+			URL = urlBase + "/services/prevenda_mobile/cadastro/produto?token="+ token + "&empresa="+ empresa + "&codigo="+ produto;
+		}else {
+			URL = urlBase + "/services/prevenda_mobile/cadastro/produto?token="+ token + "&empresa="+ empresa + "&codigo="+ produto;
+		}
 	}
+
+
 
 	$.ajax({
 		url: URL,

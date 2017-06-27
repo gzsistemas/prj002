@@ -6,29 +6,21 @@
 /*
  * DECLARAÇÃO DE FUNÇÕES
  */
-function enderecoDefinido() {
-    return $("#txt-cnpj").val();
-}
+
 function login() {
-    if(!enderecoDefinido()) {
-        toastWarning("CNPJ / Servidor não definido!");
-        return;
-    }
-    if(!$("#txt-usuario").val() || !$("#txt-senha").val()){
-        toastError("Login inválido!");
-        return;
-    }
-    setEnderecoServidor($("#txt-cnpj").val());
     toastInfoNoHide("Aguarde... Fazendo login.");
+    
     var storage = window.localStorage;
     var conecSeg = storage.getItem("ConecSeg");
 
   	var URL = "";
 
-  	if(conecSeg != "true"){
-  		URL = "http://"+enderecoFormatado()+"/services/login";
-  	}else {
+    <url base>/services/mobile/login?token=<token>
+
+  	if(conecSeg == "true"){
   		URL = "https://"+enderecoFormatado()+"/services/login";
+  	}else {
+  		URL = "http://"+enderecoFormatado()+"/services/login";
   	}
 
     $.ajax({
@@ -59,9 +51,6 @@ function login() {
 }
 function onLoad() {
     $("#txt-cnpj").val(getEnderecoServidor());
-    //if(!$("#txt-cnpj").val()) {
-    //    toastWarning("CNPJ / Servidor não definido!");
-    //}
     var usuario = getUsuario();
     $("#txt-usuario").val(usuario.nomeUsuario);
 }

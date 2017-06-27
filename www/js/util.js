@@ -21,12 +21,8 @@ toastr.options = {
 }
 
 function getEnderecoServidor() {
-    //var storage = window.localStorage;
-    //var value = storage.getItem(key); // Pass a key name to get its value.
-    //storage.setItem(key, value) // Pass a key name and its value to add or update that key.
-    //storage.removeItem(key) // Pass a key name to remove that key from storage.
     var storage = window.localStorage;
-    var enderecoServidor = storage.getItem("endereco-servidor"); // Pass a key name to get its value.
+    var enderecoServidor = storage.getItem("endereco-servidor");
     return enderecoServidor;
 }
 function setEnderecoServidor(enderecoServidor) {
@@ -51,7 +47,7 @@ function myToast(tipo, mensagem) {
 		toastr.info(mensagem);
 	} else if(tipo == "error") {
 		toastr.error(mensagem);
-	} 
+	}
 }
 
 function myToastNoHide(tipo, mensagem) {
@@ -80,25 +76,25 @@ function toastWarning(mensagem) {
 
 function validarCNPJ(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g,'');
- 
+
     if(cnpj == '') return false;
-     
+
     if (cnpj.length != 14)
         return false;
- 
+
     // Elimina CNPJs invalidos conhecidos
-    if (cnpj == "00000000000000" || 
-        cnpj == "11111111111111" || 
-        cnpj == "22222222222222" || 
-        cnpj == "33333333333333" || 
-        cnpj == "44444444444444" || 
-        cnpj == "55555555555555" || 
-        cnpj == "66666666666666" || 
-        cnpj == "77777777777777" || 
-        cnpj == "88888888888888" || 
+    if (cnpj == "00000000000000" ||
+        cnpj == "11111111111111" ||
+        cnpj == "22222222222222" ||
+        cnpj == "33333333333333" ||
+        cnpj == "44444444444444" ||
+        cnpj == "55555555555555" ||
+        cnpj == "66666666666666" ||
+        cnpj == "77777777777777" ||
+        cnpj == "88888888888888" ||
         cnpj == "99999999999999")
         return false;
-         
+
     // Valida DVs
     tamanho = cnpj.length - 2;
     numeros = cnpj.substring(0,tamanho);
@@ -113,7 +109,7 @@ function validarCNPJ(cnpj) {
     resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
     if (resultado != digitos.charAt(0))
         return false;
-         
+
     tamanho = tamanho + 1;
     numeros = cnpj.substring(0,tamanho);
     soma = 0;
@@ -126,9 +122,9 @@ function validarCNPJ(cnpj) {
     resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
     if (resultado != digitos.charAt(1))
           return false;
-           
+
     return true;
-    
+
 }
 
 function servidorGZCloud(cnpj){
@@ -182,15 +178,15 @@ function guardarInicializacao(loja, tipo){
 function obterInicializacao(obj){
     var storage = window.localStorage;
 	if(obj == "loja"){
-		return JSON.parse(storage.getItem("loja-init"));	
+		return JSON.parse(storage.getItem("loja-init"));
 	} else if(obj == "tipo"){
-	    return JSON.parse(storage.getItem("tipo-init"));	
+	    return JSON.parse(storage.getItem("tipo-init"));
 	}
 }
 
 function obterDataAtual(){
 	var data = new Date();
-	return String(("0" + data.getDate()).slice(-2)) + "/" + ("0" + (data.getMonth() + 1)).slice(-2) + "/" + String(data.getFullYear());  
+	return String(("0" + data.getDate()).slice(-2)) + "/" + ("0" + (data.getMonth() + 1)).slice(-2) + "/" + String(data.getFullYear());
 }
 
 function obterDias(quantidade){
@@ -207,7 +203,7 @@ function checarVazio(valor){
 
 function checarNegativo(valor){
 	if(!((e.keyCode > 95 && e.keyCode < 106)
-      || (e.keyCode > 47 && e.keyCode < 58) 
+      || (e.keyCode > 47 && e.keyCode < 58)
       || e.keyCode == 8)) {
         return false;
     }
@@ -220,7 +216,7 @@ function guardarComanda(com){
 
 function obterComanda(){
     var storage = window.localStorage;
-	return JSON.parse(storage.getItem("comanda"));	
+	return JSON.parse(storage.getItem("comanda"));
 }
 
 function removerAspas(strg){
@@ -236,3 +232,83 @@ function removerConcha(strg){
 	var string = str.replace(/"/g, "");
 	return string;
 }
+
+function getUser(){
+	var storage = window.localStorage;
+	var usuario = JSON.parse(storage.getItem("user"));
+	return usuario;
+}
+
+function setUser(user){
+	var storage = window.localStorage;
+	storage.setItem("user", JSON.stringify(user));
+}
+
+function getSenha(){
+	var storage = window.localStorage;
+	var senha = JSON.parse(storage.getItem("password"));
+	return senha;
+}
+
+function setSenha(senha){
+	var storage = window.localStorage;
+	storage.setItem("password", JSON.stringify(senha));
+}
+
+function getEmpresa(){
+	var storage = window.localStorage;
+	var empresa = JSON.parse(storage.getItem("empresa"));
+	return empresa;
+}
+
+function setEmpresa(empresa){
+	var storage = window.localStorage;
+	storage.setItem("empresa", JSON.stringify(empresa));
+}
+
+function getUrlbase(){
+	var storage = window.localStorage;
+	var url = JSON.parse(storage.getItem("urlbase"));
+	return url;
+}
+
+function setUrlbase(url){
+	var storage = window.localStorage;
+	storage.setItem("urlbase", JSON.stringify(url));
+}
+
+function getStatus(){
+	var storage = window.localStorage;
+	var status = JSON.parse(storage.getItem("status"));
+	return status;
+}
+
+function setStatus(status){
+	var storage = window.localStorage;
+	storage.setItem("status", JSON.stringify(status));
+}
+
+function getSSL(){
+	var storage = window.localStorage;
+	var ssl = JSON.parse(storage.getItem("ssl"));
+	return ssl;
+}
+
+function setSSL(ssl){
+	var storage = window.localStorage;
+	storage.setItem("ssl", JSON.stringify(ssl));
+}
+
+window.addEventListener( 'error', function( event ){
+    var boxError = document.createElement( 'div' );
+    boxError.className  = 'box-error';
+
+    boxError.innerHTML  = '<h4>Erro de JS:</h4>';
+    boxError.innerHTML += '<p class="msg">'+ event.message +'</p>';
+    boxError.innerHTML += '<p>Em: '+ event.filename +'</p>';
+    boxError.innerHTML += '<p>Linha: '+ event.lineno +'</p>';
+
+    document.body.appendChild( boxError );
+		toastError("Ooops... Algo deu errado!");
+    return false;
+});
