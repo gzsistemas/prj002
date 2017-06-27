@@ -16,7 +16,8 @@
  */
 function onLoad() {
   var storage = window.localStorage;
-  conexaoSegura = JSON.parse(storage.getItem("ConecSeg"));
+  conexaoSegura = getSSL();
+  var status = getStatus();
 
   $('#tgl-conexao-segura').toggles({
 		on: conexaoSegura
@@ -25,6 +26,25 @@ function onLoad() {
   $('.carousel').carousel({
     interval: false
   });
+
+  if(status == true){
+    var usr = getUser();
+    var senha = getSenha();
+    var empresa = getEmpresa();
+    $("#txt-usuario-cloud").val(usr);
+    $("#txt-senha-cloud").val(senha);
+    $("#txt-empresa").val(empresa);
+  } else{
+    var usr = getUser();
+    var senha = getSenha();
+    var empresa = getEmpresa();
+    var url = getUrlbase();
+    $("#txt-usuario").val(usr);
+    $("#txt-senha").val(senha);
+    $("#txt-empresa").val(empresa);
+    $("#txt-url-base").val(url);
+  }
+
 }
 
 function guardar(){
@@ -49,7 +69,6 @@ function salvar() {
       if($("#txt-usuario").val() == "" | $("#txt-senha").val() == "" | $("#txt-url-base").val() == ""){
         toastError("Existem campos em branco!");
       } else{
-        alert("teste");
         var user = $("#txt-usuario").val();
         var senha = $("#txt-senha").val();
         var empresa = $("#txt-empresa").val();
@@ -62,14 +81,14 @@ function salvar() {
         setStatus(status);
         setSSL(conexaoSegura);
         toastInfoNoHide("Configurações salvas!");
-        //logar(); ---- modelar no login.js
+        login();
       }
     } else {
       var storage = window.localStorage;
       var user = JSON.parse(storage.getItem("user"));
       if(user == null){
         guardar();
-        //logar(); ---- modelar no login.js
+        login();
       } else{
         confirmar();
       }
@@ -94,14 +113,12 @@ function confirmar() {
       callback: function (result) {
         if (result == true) {
           guardar();
-          //logar(); ---- modelar no login.js
+          login();
         } else {
-          //logar(); ---- modelar no login.js
+          login();
         }
       }
   });
-
-
 }
 
 /*

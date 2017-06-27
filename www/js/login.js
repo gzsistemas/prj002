@@ -1,58 +1,64 @@
 /*
-	Login.JS - Precisa de verificação caso seja primeiro acesso.
-	Último update: 30/12/2016
+	Login.JS
 */
 
 /*
  * DECLARAÇÃO DE FUNÇÕES
  */
+function onLoad() {
+  var user = getUser();
+  if(user == null){
+    configs();
+  } else{
+    login();
+  }
+}
 
 function login() {
-    toastInfoNoHide("Aguarde... Fazendo login.");
-    
-    var storage = window.localStorage;
-    var conecSeg = storage.getItem("ConecSeg");
+  var storage = window.localStorage;
+  toastInfoNoHide("Aguarde... Fazendo login!");
+  var status = getStatus();
+  var ssl = getSSL();
+  // Criação do token
+  var usr = getUser();
+  var senha = getSenha();
+  var token = criarToken(usr,senha);
+  // ------
+  var URL = "";
+  // Parte que decide qual url usar
+  // Status define se é cloud ou não
+  if(status == true){
+    var url = getUrlbase();
+    URL = url + "/services/mobile/login?token=" + token;
+  } else{
+    var url = getUrlbase();
+    var protocolo = "http";
+    if(ssl == true){
+     procotolo = protocolo + "s";
+    }
+    protocolo = protocolo + "://";
+    var URL = protocolo + url + "/" + "/services/mobile/login?token=" + token;
+  }
+  $.ajax({
+    url:URL,
+    headers: {
+      "Accept":"application/json"      
+    },
+    data: {
+    },
+    success: function (resposta) {
 
-  	var URL = "";
-
-    <url base>/services/mobile/login?token=<token>
-
-  	if(conecSeg == "true"){
-  		URL = "https://"+enderecoFormatado()+"/services/login";
-  	}else {
-  		URL = "http://"+enderecoFormatado()+"/services/login";
-  	}
-
-    $.ajax({
-        url:URL,
-        headers: {
-            "Accept":"application/json"
-        },
-        data: {
-            usuario: $("#txt-usuario").val(),
-            senha: $("#txt-senha").val()
-        },
-        success: function (resposta) {
-            $.toast().reset("all");
-            var isOk = resposta.ok;
-            if(isOk) {
-                var usuario = resposta.extra.usuario;
-                guardarUsuario(usuario);
-                window.location.replace("dash.html");
-            }else{
-                toastError("Login inválido!");
-            }
-        },
-        error: function (erro) {
-            $.toast().reset("all");
-            toastError("Não foi possível estabelecer conexão com o servidor!");
-        }
-    });
-}
-function onLoad() {
-    $("#txt-cnpj").val(getEnderecoServidor());
-    var usuario = getUsuario();
-    $("#txt-usuario").val(usuario.nomeUsuario);
+      var isOk = resposta.ok;
+      if(isOk) {
+        window.location.replace("dash.html");
+      }else{
+        toastError("Login inválido! Verificar configurações!");
+      }
+    },
+    error: function (erro) {
+      toastError("Não foi possível estabelecer conexão com o servidor!");
+    }
+  });
 }
 
 function configs() {

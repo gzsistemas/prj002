@@ -232,7 +232,7 @@ function removerConcha(strg){
 	var string = str.replace(/"/g, "");
 	return string;
 }
-
+// Criação das novas funções que realizam o novo fluxo de login
 function getUser(){
 	var storage = window.localStorage;
 	var usuario = JSON.parse(storage.getItem("user"));
@@ -276,7 +276,7 @@ function setUrlbase(url){
 	var storage = window.localStorage;
 	storage.setItem("urlbase", JSON.stringify(url));
 }
-
+// O status serve para separar usuários cloud de usuários com servidor interno
 function getStatus(){
 	var storage = window.localStorage;
 	var status = JSON.parse(storage.getItem("status"));
@@ -299,6 +299,7 @@ function setSSL(ssl){
 	storage.setItem("ssl", JSON.stringify(ssl));
 }
 
+// função a parte que identifica e demonstra erros na tela
 window.addEventListener( 'error', function( event ){
     var boxError = document.createElement( 'div' );
     boxError.className  = 'box-error';
