@@ -184,6 +184,7 @@ function carregarItens(arr){
 	- Deve haver uma table na página que será carregada;
 
 */
+/*
 function carregarComanda(arr){
 	arr.forEach(function(arr, i){
 		var tr = $("<tr>").append($("<td class='coluna-descricao'>"));
@@ -198,7 +199,7 @@ function carregarComanda(arr){
 	});
 
 }
-
+*/
 /*
 
 	Lançar produto
