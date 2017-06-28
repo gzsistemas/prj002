@@ -1,22 +1,14 @@
 /*
 *	Produtos
 */
+var produtos = [];
 
-function Produto(id, cod, ean, desc, codVend, tPreco, qtde, preco, percentualDesc, percentualAcres, descontMulti, infAdd, cancel, valDesc, valAcres, impres){
-	this.id = id;	
+function Produto(sequencia, cod, ean, desc, complemento, preco, quantidade){
+	this.sequencia = sequencia;
 	this.codigo = cod;
 	this.ean = ean;
 	this.descricao = desc;
-	this.codigoVend = codVend;
-	this.tipoPreco = tPreco;
-	this.quantidade = qtde;
+	this.complemento = complemento;
 	this.preco = preco;
-	this.percentualDesconto = percentualDesc;
-	this.percentualAcrescimo = percentualAcres;
-	this.descontoMultiplo = descontMulti;
-	this.infAdd = infAdd;
-	this.cancelado = cancel;
-	this.valorDesconto = valDesc;
-	this.valorAcrescimo = valAcres;
-	this.impresso = impres;
+	this.quantidade = quantidade;
 }

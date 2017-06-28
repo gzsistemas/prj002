@@ -7,32 +7,39 @@
 */
 function pesquisa(){
 	var storage = window.localStorage;
-	//var endServ = storage.getItem("endereco-servidor");
-  var endServ = enderecoFormatado();
+	var status = getStatus();
+	var ssl = getSSL();
+	// Criação do token
+	var token = gerarToken();
+	console.log(token);
+	var empresa = getEmpresa();
 	var comanda = $("#txt-com").val();
-
-	var conecSeg = storage.getItem("ConecSeg");
-
+	// ------
 	var URL = "";
-
-	if(conecSeg == "true"){
-		URL = "https://"+endServ+"/services/comanda/consultar?numero="+comanda+"";
-	}else {
-		URL = "http://"+endServ+"/services/comanda/consultar?numero="+comanda+"";
+	// Parte que decide qual url usar
+	// Status define se é cloud ou não
+	if(status == true){
+		var url = getUrlbase();
+		URL = url + "/services/prevenda_mobile/comanda/consultar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda;
+	} else{
+		var url = getUrlbase();
+		var protocolo = "http";
+		if(ssl == true){
+		 procotolo = protocolo + "s";
+		}
+		protocolo = protocolo + "://";
+		var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/consultar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
 	}
-
- 	//alert(URL);
 
 	if(checarVazio(comanda) != true){
 		toastInfoNoHide("Pesquisando comanda...Aguarde!");
 			$.ajax({
-				url: "http://"+endServ+"/services/comanda/consultar?numero="+comanda+"",
+				url: URL,
 				headers: {
 					"Accept":"application/json"
 				},
 				mensagem: function(resposta){
 					var message = resposta.message;
-
 				},
 				data: {
 
@@ -40,31 +47,19 @@ function pesquisa(){
 				success: function (resposta) {
 					var isOk = resposta.ok;
 						if(isOk) {
-							var storage = window.localStorage;
-							storage.setItem("comanda", JSON.stringify(comanda));
-
-							var prods = [];
-							prods = resposta.extra.lista_itenscomanda.itemcomanda;
-
-							for(var i = 0; i<prods.length; i++){
-								itsComanda.push(new Produto(i, prods[i].codigoInterno, prods[i].codigoEAN,prods[i].descricao,prods[i].codigoVend,prods[i].tipoPreco,prods[i].quantidade,prods[i].precoUnitario,prods[i].percentualDesconto,prods[i].percentualAcrescimo,prods[i].descontoMultiplo,prods[i].complemento,prods[i].cancelado,prods[i].valorDesconto,prods[i].valorAcrescimo,prods[i].impresso));
-							}
-
-							var comand = JSON.stringify(itsComanda).replace("[", "").replace("]", "");
-
-
-							storage.setItem("pedidoP"+comanda, comand);
-							storage.setItem("itsComanda", comand);
+							setComanda(comanda);														
 							window.location.replace("prevenda.html");
 						}else{
+							var vazio = "";
+							$("#txt-com").val(vazio);
+							$("#txt-com").focus();
 							bootbox.confirm({
-                                title: "Aviso",
-                                message: resposta.mensagem,
-                                size: "small",
-                                callback: function(result){
-
-                                }
-                            });
+                title: "Aviso",
+                message: resposta.mensagem,
+                size: "small",
+                callback: function(result){
+                }
+              });
 						}
 				},
 				error: function (erro) {
@@ -93,7 +88,7 @@ function onLoad() {
 	}else {
 		var server = getUrlbase();
 	}
-	$("#txt-servidor").text(server);	
+	$("#txt-servidor").text(server);
 }
 
 function troca() {

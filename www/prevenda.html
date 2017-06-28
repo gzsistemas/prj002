@@ -15,11 +15,12 @@
     <link rel='stylesheet' type='text/css' href='plugins/charts-morrisjs/morris.css' />
     <link rel='stylesheet' type='text/css' href='plugins/codeprettifier/prettify.css' />
     <link rel='stylesheet' type='text/css' href='plugins/form-toggle/toggles.css' />
+    <link rel='stylesheet' type='text/css' href='plugins/datatables/dataTables.css' />
 </head>
 
 <body onload="onLoad()">
     <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-        <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Abrir/fechar menu"></a>
+        <!--<a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Abrir/fechar menu"></a>-->
 
         <div class="navbar-header pull-left">
             <a class="navbar-brand margin-left" style="margin-left:12px"></a>
@@ -30,8 +31,8 @@
         </ul>
     </header>
 
-    <div id="page-container">
-        <nav id="page-leftbar" role="navigation">
+    <!--<div id="page-container">-->
+        <!--<nav id="page-leftbar" role="navigation">
             <ul class="acc-menu" id="sidebar">
                 <li><a id="btn-combo" href="#"><i class="fa fa-list"></i> <span>Combos</span></a></li>
                 <li><a id="btn-salgados" href="#"><i class="fa fa-cutlery"></i> <span>Salgados</span></a></li>
@@ -41,9 +42,9 @@
 
 
             </ul>
-        </nav>
+        </nav>-->
 
-        <div id="page-content">
+        <!--<div id="page-content">-->
             <div id='wrap'>
                 <div class="container">
                     <div class="row">
@@ -113,7 +114,7 @@
                 <!-- container -->
             </div>
             <!--wrap -->
-        </div>
+        <!--</div>-->
         <!-- page-content -->
 
         <footer role="contentinfo">
@@ -125,7 +126,7 @@
             </div>
         </footer>
 
-    </div>
+    <!--</div>-->
     <!-- page-container -->
 
     <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
@@ -137,14 +138,16 @@
     <script type='text/javascript' src='js/ui/jquery-ui.min.js'></script>
     <script type='text/javascript' src='plugins/codeprettifier/prettify.js'></script>
     <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
-	<script type="text/javascript" src="plugins/bootbox/bootbox.min.js"></script>
+	  <script type="text/javascript" src="plugins/bootbox/bootbox.min.js"></script>
     <script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
+    <script type='text/javascript' src='plugins/datatables/jquery.dataTables.min.js'></script>
+	  <script type='text/javascript' src='plugins/datatables/dataTables.bootstrap.js'></script>
+    <script type='text/javascript' src='demo/datatables.js'></script>
     <script type='text/javascript' src='js/placeholdr.js'></script>
     <script type='text/javascript' src='js/application.js'></script>
     <script type='text/javascript' src='js/util.js'></script>
+    <script src="js/token.js"></script>
     <script type='text/javascript' src='js/produto.js'></script>
-    <script type='text/javascript' src='js/itemComanda.js'></script>
-    <script type='text/javascript' src='js/prods.js'></script>
     <script type='text/javascript' src='js/webServ.js'></script>
     <script type='text/javascript' src='js/prevenda.js'></script>
 
