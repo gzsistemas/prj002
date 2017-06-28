@@ -86,9 +86,9 @@ function pesquisar(){
 function pesquisa() {
 	var pesquisa = "";
 	var com = getComanda();
-	var desc = $("#txt-ean").val();
+	var desc = $("#txt-ean").val();	
 	var produto = desc.toUpperCase();
-	setProduto(Produto);
+	setProduto(produto);
 	window.location.replace("pesquisa.html");
 }
 

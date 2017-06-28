@@ -353,6 +353,22 @@ function gerarToken(){
 	var token = criarToken(usr,senha);
 	return token;
 }
+
+// função a parte que identifica e demonstra erros na tela
+window.addEventListener( 'error', function( event ){
+    var boxError = document.createElement( 'div' );
+    boxError.className  = 'box-error';
+
+    boxError.innerHTML  = '<h4>Erro de JS:</h4>';
+    boxError.innerHTML += '<p class="msg">'+ event.message +'</p>';
+    boxError.innerHTML += '<p>Em: '+ event.filename +'</p>';
+    boxError.innerHTML += '<p>Linha: '+ event.lineno +'</p>';
+
+    document.body.appendChild( boxError );
+		toastError("Ooops... Algo deu errado!");
+    return false;
+});
+
 function datatables(){
 	$('.datatables').dataTable({
 		"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
@@ -378,22 +394,3 @@ function datatables(){
 	$('.dataTables_filter input').addClass('form-control').attr('placeholder','Procurar...');
 	$('.dataTables_length select').addClass('form-control');
 }
-
-$(document).ready(function() {
-	
-});
-
-// função a parte que identifica e demonstra erros na tela
-window.addEventListener( 'error', function( event ){
-    var boxError = document.createElement( 'div' );
-    boxError.className  = 'box-error';
-
-    boxError.innerHTML  = '<h4>Erro de JS:</h4>';
-    boxError.innerHTML += '<p class="msg">'+ event.message +'</p>';
-    boxError.innerHTML += '<p>Em: '+ event.filename +'</p>';
-    boxError.innerHTML += '<p>Linha: '+ event.lineno +'</p>';
-
-    document.body.appendChild( boxError );
-		toastError("Ooops... Algo deu errado!");
-    return false;
-});

@@ -16,20 +16,32 @@
 	OBS:
 	- Todos os toast indicam como está a comunicação com o WebService;
 */
+
 function consultaDescricao(){
 	var storage = window.localStorage;
-	var produto = removerAspas(storage.getItem("produto"));
-	//var endServ = storage.getItem("endereco-servidor");
-  var endServ = enderecoFormatado();
-
-	var conecSeg = storage.getItem("ConecSeg");
-
+	var produto = getProduto();
+	var status = getStatus();
+	var ssl = getSSL();
+	// Criação do token
+	var token = gerarToken();
+	console.log(token);
+	var empresa = getEmpresa();
+	var comanda = $("#txt-com").val();
+	// ------
 	var URL = "";
-
-	if(conecSeg == "true"){
-		URL = "https://"+endServ+"/services/cadastro/produto/listar?loja=1&limite=50&desc="+produto+"";
-	}else {
-		URL = "http://"+endServ+"/services/cadastro/produto/listar?loja=1&limite=50&desc="+produto+"";
+	// Parte que decide qual url usar
+	// Status define se é cloud ou não
+	if(status == true){
+		var url = getUrlbase();
+		URL = url + "/services/prevenda_mobile/cadastro/produto/listar?token=" + token + "&empresa=" + empresa + "&descricao=" + produto;
+	} else{
+		var url = getUrlbase();
+		var protocolo = "http";
+		if(ssl == true){
+		 procotolo = protocolo + "s";
+		}
+		protocolo = protocolo + "://";
+		var URL = protocolo + url + "/" + "/services/prevenda_mobile/cadastro/produto/listar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
 	}
 
 	$.ajax({
@@ -44,15 +56,13 @@ function consultaDescricao(){
 			var isOk = resposta.ok;
 				if(isOk) {
 					var prods = [];
-					prods = resposta.extra.lista_produtos.produto;
-
+					prods = resposta.extra.produto.produto;
 						if(prods == ""){
 							toastError("Não há produtos com essa pesquisa!");
 						}else{
 							for(var i = 0; i<prods.length; i++){
-								produtos.push(new Produto(i,removerAspas(JSON.stringify(prods[i].cdprod)),removerAspas(JSON.stringify(prods[i].codbarra)),removerAspas(JSON.stringify(prods[i].descricao)),"1","1","1",removerAspas(JSON.stringify(prods[i].termvenda)),"0.00", "0.00", "0.00", "-", "N", "0.00", "0.00", "N"));
+								produtos.push(new Produtos(prods[i].codigo, prods[i].ean, prods[i].descricao, prods[i].preco));
 							}
-
 							carregarItens(produtos);
 						}
 				}else{
@@ -81,30 +91,29 @@ function consultaDescricao(){
 */
 function consultaCodigo(){
 	var storage = window.localStorage;
-	var produto = removerAspas(storage.getItem("produto"));
-	var endServ = storage.getItem("endereco-servidor");
-	//alert(produto);
-	//
-	var conecSeg = storage.getItem("ConecSeg");
-
-	var URL = "";
-
-	var usr = getUser();
-	var senha = getSenha();
-  var token = criarToken(usr,senha);
+	var produto = getProduto();
+	var status = getStatus();
+	var ssl = getSSL();
+	// Criação do token
+	var token = gerarToken();
+	console.log(token);
 	var empresa = getEmpresa();
-	var urlBaseCloud = "http://homologacao.gzcloud.com.br/flex-e";
-	var urlBase = getUrlbase();
-	var cloud = getStatus();
-
-	if(cloud == "true"){
-			URL = urlBase + "/services/prevenda_mobile/cadastro/produto?token="+ token + "&empresa="+ empresa + "&codigo="+ produto;
-	} else {
-		if(conecSeg == "true"){
-			URL = urlBase + "/services/prevenda_mobile/cadastro/produto?token="+ token + "&empresa="+ empresa + "&codigo="+ produto;
-		}else {
-			URL = urlBase + "/services/prevenda_mobile/cadastro/produto?token="+ token + "&empresa="+ empresa + "&codigo="+ produto;
+	var comanda = $("#txt-com").val();
+	// ------
+	var URL = "";
+	// Parte que decide qual url usar
+	// Status define se é cloud ou não
+	if(status == true){
+		var url = getUrlbase();
+		URL = url + "/services/prevenda_mobile/cadastro/produto?token=" + token + "&empresa=" + empresa + "&codigo=" + produto;
+	} else{
+		var url = getUrlbase();
+		var protocolo = "http";
+		if(ssl == true){
+		 procotolo = protocolo + "s";
 		}
+		protocolo = protocolo + "://";
+		var URL = protocolo + url + "/" + "/services/prevenda_mobile/cadastro/produto?token=" + token + "&empresa=" + empresa + "&codigo=" + comanda
 	}
 
 	$.ajax({
@@ -118,15 +127,22 @@ function consultaCodigo(){
 		success: function (resposta) {
 			var isOk = resposta.ok;
 				if(isOk) {
-					 var prods = resposta.extra.produto;
-					 produtos.push(new Produto(removerAspas(JSON.stringify(prods.id)),removerAspas(JSON.stringify(prods.cdprod)),removerAspas(JSON.stringify(prods.codbarra)),removerAspas(JSON.stringify(prods.descricao)),"1","1","1",removerAspas(JSON.stringify(prods.termvenda)),"0.00", "0.00", "0.00", "", "N", "0.00", "0.00", "N"));
-					 carregarItens(produtos);
+					var prods = [];
+					prods = resposta.extra.produto.produto;
+						if(prods == ""){
+							toastError("Não há produtos com essa pesquisa!");
+						}else{
+							for(var i = 0; i<prods.length; i++){
+								produtos.push(new Produtos(prods[i].codigo, prods[i].ean, prods[i].descricao, prods[i].preco));
+							}
+							carregarItens(produtos);
+						}
 				}else{
 					toastError("Não há produtos com essa pesquisa!");
 				}
 		},
 		error: function (erro) {
-			toastError("Não foi possível realizar a pesquisa! Verifique Internet");
+			toastError("Não foi possível realizar a pesquisa!");
 		}
 	});
 }
@@ -149,7 +165,7 @@ function carregarItens(arr){
 		var tr = $("<tr>").append($("<td class='coluna-id'>"));
 		tr.find(".coluna-id").text(i);
 		$(tr).append($("<td class='coluna-descricao'>"));
-		tr.find(".coluna-descricao").text(arr.codigo + " " + "-" + " " + arr.descricao);
+		tr.find(".coluna-descricao").text(arr.ean + " " + "-" + " " + arr.descricao);
 		$(tr).append($("<td class='coluna-preco'>"));
 		tr.find(".coluna-preco").text(arr.preco);
 		$(tr).appendTo($("#tb-prods"));
@@ -180,6 +196,7 @@ function carregarComanda(arr){
 		tr.find(".coluna-infAdd").text(arr[0][i].infAdd);
 		$(tr).appendTo($("#tb-prods"));
 	});
+
 }
 
 /*

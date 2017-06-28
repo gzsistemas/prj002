@@ -1,5 +1,5 @@
 /*
-*	Produtos
+*	Produto Comanda
 */
 var produtos = [];
 

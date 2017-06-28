@@ -4,11 +4,6 @@
 	Página que realizará pesquisas no banco
 */
 
-
-/*
-	Definição do array que irá conter os os itens já selecionados anteriormente.
-*/
-var itens = [];
 /*
 		Função onload
 
@@ -16,37 +11,7 @@ var itens = [];
 	a função pode ser realizada mais vezes, porém ela é chamada pela própria página quando iniciada.
 */
 function onLoad(){
-	var storage = window.localStorage;
-	var controle = JSON.parse(storage.getItem("controle"));
-	if(controle == "c") {
-		toastInfo("O item: Combos foi selecionado!");
-		storage.setItem("produto", JSON.stringify("COMBOS"));
-		pesquisar();
-		storage.removeItem("controle");
-	} else if(controle == "s") {
-		toastInfo("O item: Salgados foi selecionado!");
-		storage.setItem("produto", JSON.stringify("SALGADOS"));
-		pesquisar();
-		storage.removeItem("controle");
-	} else if(controle == "b") {
-		toastInfo("O item: Bebidas foi selecionado!");
-		storage.setItem("produto", JSON.stringify("BEBIDAS"));
-		pesquisar();
-		storage.removeItem("controle");
-	} else if(controle == "l") {
-		toastInfo("O item: Lanches foi selecionado!");
-		storage.setItem("produto", JSON.stringify("LANCHES"));
-		pesquisar();
-		storage.removeItem("controle");
-	} else if(controle == "sp") {
-		toastInfo("O item: Sopas foi selecionado!");
-		storage.setItem("produto", JSON.stringify("SOPAS"));
-		pesquisar();
-		storage.removeItem("controle");
-	} else if(controle == "") {
-		storage.removeItem("controle");
-		pesquisar();
-	}
+	pesquisar();
 }
 /*
 		Pesquisa do Produtos
@@ -62,10 +27,7 @@ function onLoad(){
 
 */
 function pesquisar() {
-	var storage = window.localStorage;
-	var produto = JSON.parse(storage.getItem("produto"));
-	var endServ = removerAspas(storage.getItem("endereco-servidor"));
-
+	var produto = getProduto();
 	if(produto == ""){
 		toastInfoNoHide("Aguarde... pesquisando!");
 		//toastError("Grande Fluxo de dados! Operação lenta!");
@@ -73,8 +35,8 @@ function pesquisar() {
 	}else {
 		if(isNaN(produto)){
 			toastInfoNoHide("Aguarde... pesquisando!");
-				consultaDescricao(endServ,produto);
-				carregarItens(produtos);
+			consultaDescricao();
+			carregarItens(produtos);
 		}else{
 			toastInfoNoHide("Aguarde... pesquisando!");
 			consultaCodigo();
@@ -82,7 +44,7 @@ function pesquisar() {
 	}
 }
 /*
-		Abre painel função que carrega o bootbox
+		Abre painel função que carrega o bootbox(caixa de mensagem que irá definir quantidade e complementos)
 
 	Dados requisitados:
 	- codigo > Código do produto que foi escolhido na tabela demonstrada;
@@ -175,7 +137,7 @@ function adiciona() {
 	var comanda = removerAspas(JSON.parse(storage.getItem("comanda")));
 	var endServ = removerAspas(storage.getItem("endereco-servidor"));
 	pedido.push(storage.getItem("itsCom"));
-	
+
 	alert(pedido);
 
 	if(pedido == ""){
