@@ -313,15 +313,15 @@ function setVendedorCodigo(codigo){
 	storage.setItem("vendedorCodigo", JSON.stringify(codigo));
 }
 
-function getProduto(){
+function getProd(){
 	var storage = window.localStorage;
-	var produto = JSON.parse(storage.getItem("produto"));
-	return produto;
+	var prod = JSON.parse(storage.getItem("prod"));
+	return prod;
 }
 
-function setProduto(produto){
+function setProd(prod){
 	var storage = window.localStorage;
-	storage.setItem("produto", JSON.stringify(produto));
+	storage.setItem("prod", JSON.stringify(prod));
 }
 
 function getComanda(){
@@ -333,6 +333,94 @@ function getComanda(){
 function setComanda(comanda){
 	var storage = window.localStorage;
 	storage.setItem("comanda", JSON.stringify(comanda));
+}
+
+function getUltimaComanda(){
+	var storage = window.localStorage;
+	var ultima = JSON.parse(storage.getItem("ultimaComanda"));
+	return ultima;
+}
+
+function setUltimaComanda(ultima) {
+	var storage = window.localStorage;
+	storage.setItem("ultimaComanda", JSON.stringify(ultima));
+}
+
+function getSequencia(){
+	var storage = window.localStorage;
+	var sequencia = JSON.parse(storage.getItem("sequencia"));
+	return sequencia;
+}
+
+function setSequencia(sequencia) {
+	var storage = window.localStorage;
+	storage.setItem("sequencia", JSON.stringify(sequencia));
+}
+
+function getQuantidade(){
+	var storage = window.localStorage;
+	var quantidade = JSON.parse(storage.getItem("quantidade"));
+	return quantidade;
+}
+
+function setQuantidade(quantidade){
+	var storage = window.localStorage;
+	storage.setItem("quantidade", JSON.stringify(quantidade));
+}
+
+function getComplemento(){
+	var storage = window.localStorage;
+	var complemento = JSON.parse(storage.getItem("complemento"));
+	return complemento;
+}
+
+function setComplemento(complemento){
+	var storage = window.localStorage;
+	storage.setItem("complemento", JSON.stringify(complemento));
+}
+
+function getProduto(){
+	var storage = window.localStorage;
+	var produto = JSON.parse(storage.getItem("produto"));
+	return produto;
+}
+
+function setProduto(produto) {
+	var storage = window.localStorage;
+	storage.setItem("produto", JSON.stringify(produto));
+}
+
+function getEan(){
+	var storage = window.localStorage;
+	var ean = JSON.parse(storage.getItem("ean"));
+	return ean;
+}
+
+function setEan(ean) {
+	var storage = window.localStorage;
+	storage.setItem("ean", JSON.stringify(ean));
+}
+
+function getPreco(){
+	var storage = window.localStorage;
+	var preco = JSON.parse(storage.getItem("preco"));
+	return preco;
+}
+
+function setPreco(preco) {
+	var storage = window.localStorage;
+	storage.setItem("preco", JSON.stringify(preco));
+}
+
+function limparItens(){
+	var storage = window.localStorage;
+	storage.removeItem("complemento");
+	storage.removeItem("ean");
+	storage.removeItem("preco");
+	storage.removeItem("prod");
+	storage.removeItem("produto");
+	storage.removeItem("quantidade");
+	storage.removeItem("sequencia");
 }
 
 function logout(){
@@ -353,6 +441,8 @@ function gerarToken(){
 	var token = criarToken(usr,senha);
 	return token;
 }
+
+
 
 // função a parte que identifica e demonstra erros na tela
 window.addEventListener( 'error', function( event ){

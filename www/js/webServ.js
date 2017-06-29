@@ -19,14 +19,14 @@
 
 function consultaDescricao(){
 	var storage = window.localStorage;
-	var produto = getProduto();
+	var produto = getProd();
 	var status = getStatus();
 	var ssl = getSSL();
 	// Criação do token
 	var token = gerarToken();
 	console.log(token);
 	var empresa = getEmpresa();
-	var comanda = $("#txt-com").val();
+
 	// ------
 	var URL = "";
 	// Parte que decide qual url usar
@@ -64,6 +64,29 @@ function consultaDescricao(){
 								produtos.push(new Produtos(prods[i].codigo, prods[i].ean, prods[i].descricao, prods[i].preco));
 							}
 							carregarItens(produtos);
+							$('.datatables').dataTable({
+								"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+									"iDisplayLength": 5,
+									"aLengthMenu": [[5, 10, 20, 30, 50, -1], [5, 10, 20, 30, 50, "All"]],
+									"sPaginationType": "bootstrap",
+									"oLanguage": {
+											"sLengthMenu": "_MENU_ Registros por página",
+											"sEmptyTable": "Não há registros para o produto requisitado",
+											"sSearch": "",
+											"sInfo": "Mostrando _START_ para _END_ de _TOTAL_ registros",
+											"sInfoEmpty":"Mostrando 0 para 0 de 0 registros",
+											"sInfoFiltered": "(Filtrado de _MAX_ do total de registros)",
+											"sZeroRecords": "Nenhum registro encontrado",
+									"oPaginate": {
+										"sPrevious": "Anterior",
+										"sNext": "Próximo"
+										}
+
+									}
+
+							});
+							$('.dataTables_filter input').addClass('form-control').attr('placeholder','Procurar...');
+							$('.dataTables_length select').addClass('form-control');
 						}
 				}else{
 					toastError("Não há produtos com essa pesquisa!");
@@ -91,14 +114,13 @@ function consultaDescricao(){
 */
 function consultaCodigo(){
 	var storage = window.localStorage;
-	var produto = getProduto();
+	var produto = getProd();
 	var status = getStatus();
 	var ssl = getSSL();
 	// Criação do token
 	var token = gerarToken();
 	console.log(token);
 	var empresa = getEmpresa();
-	var comanda = $("#txt-com").val();
 	// ------
 	var URL = "";
 	// Parte que decide qual url usar
@@ -136,6 +158,30 @@ function consultaCodigo(){
 								produtos.push(new Produtos(prods[i].codigo, prods[i].ean, prods[i].descricao, prods[i].preco));
 							}
 							carregarItens(produtos);
+							$('.datatables').dataTable({
+								"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+									"iDisplayLength": 5,
+									"aLengthMenu": [[5, 10, 20, 30, 50, -1], [5, 10, 20, 30, 50, "All"]],
+									"sPaginationType": "bootstrap",
+									"oLanguage": {
+											"sLengthMenu": "_MENU_ Registros por página",
+											"sEmptyTable": "Não há registros para o produto requisitado",
+											"sSearch": "",
+											"sInfo": "Mostrando _START_ para _END_ de _TOTAL_ registros",
+											"sInfoEmpty":"Mostrando 0 para 0 de 0 registros",
+											"sInfoFiltered": "(Filtrado de _MAX_ do total de registros)",
+											"sZeroRecords": "Nenhum registro encontrado",
+									"oPaginate": {
+										"sPrevious": "Anterior",
+										"sNext": "Próximo"
+										}
+
+									}
+
+							});
+							$('.dataTables_filter input').addClass('form-control').attr('placeholder','Procurar...');
+							$('.dataTables_length select').addClass('form-control');
+
 						}
 				}else{
 					toastError("Não há produtos com essa pesquisa!");
@@ -169,43 +215,16 @@ function carregarItens(arr){
 		$(tr).append($("<td class='coluna-preco'>"));
 		tr.find(".coluna-preco").text(arr.preco);
 		$(tr).appendTo($("#tb-prods"));
+
 	});
 }
-/*
-		Carregamento da Comanda
 
-	Dados requisitados:
-	- arr > Array da Comanda que será carregada;
-
-	Dados resultantes:
-	- Nenhum > Carregamento na tela;
-
-	OBS:
-	- Deve haver uma table na página que será carregada;
-
-*/
-/*
-function carregarComanda(arr){
-	arr.forEach(function(arr, i){
-		var tr = $("<tr>").append($("<td class='coluna-descricao'>"));
-		tr.find(".coluna-descricao").text(arr[0][i].codigo + " " + "-" + " " + arr[0][i].descricao);
-		$(tr).append($("<td class='coluna-preco'>"));
-		tr.find(".coluna-preco").text(arr[0][i].preco);
-		$(tr).append($("<td class='coluna-qtd'>"));
-		tr.find(".coluna-qtd").text(arr[0][i].quantidade);
-		$(tr).append($("<td class='coluna-infAdd'>"));
-		tr.find(".coluna-infAdd").text(arr[0][i].infAdd);
-		$(tr).appendTo($("#tb-prods"));
-	});
-
-}
-*/
 /*
 
 	Lançar produto
 
 	Dados requisatados:
-	- item > item selecionado pelo cliente;
+	- Nenhum > todos os parâmetros são pegos pelo prórpio método;
 
 	Dados resultantes:
 	- Nenhum > confirmação do item no web services
@@ -214,64 +233,79 @@ function carregarComanda(arr){
 
  */
 
-function lancaProduto(item){
-
-}
-
-function adiciona(destino) {
-	var itensComanda = [];
+function lancaProduto(){
 	var storage = window.localStorage;
-	//var endServ = removerAspas(storage.getItem("endereco-servidor"));
-    var endServ = removerAspas(enderecoFormatado());
-	var comanda = removerAspas(storage.getItem("comanda"));
-	var pedAnt = storage.getItem("itsComanda");
-	if(pedAnt == ""){
-		var comand = storage.getItem("itsCom");
-		var coma = "["+comand+"]";
-		var com = JSON.parse(coma);
+	var status = getStatus();
+	var ssl = getSSL();
+	// Criação do token
+	var token = gerarToken();
+	console.log(token);
+	var empresa = getEmpresa();
+	var comanda = getComanda();
+	var vendedor = getVendedorCodigo();
+	if(vendedor == null){
+		vendedor = 0;
+	}
+	var operacao = "INCLUIR";
+	var impresso = false;
+	var sequencia = getSequencia() + 1;
+  var quantidade = getQuantidade();
+	var complemento = getComplemento();
+	var produto = getProduto();
+	var ean = getEan();
+	var preco = getPreco();
 
-	}else{
-		var comand = storage.getItem("itsCom");
-		var pedido = pedAnt.concat(",").concat(comand);
-		var coma = "["+pedido+"]";
-		var com = JSON.parse(coma);
 
+	var URL = "";
+	// Parte que decide qual url usar
+	// Status define se é cloud ou não
+	if(status == true){
+		var url = getUrlbase();
+		URL = url + "/services/prevenda_mobile/comanda/lancamento";
+	} else{
+		var url = getUrlbase();
+		var protocolo = "http";
+		if(ssl == true){
+		 procotolo = protocolo + "s";
+		}
+		protocolo = protocolo + "://";
+		var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/lancamento";
 	}
 
-	var envio = 0;
-
-	for(var i = 0; i<com.length; i++){
-		itensComanda.push(new ItemComanda(i, comanda,(i+1) ,com[i].codigo, com[i].ean,com[i].descricao,com[i].codigoVend,com[i].tipoPreco,com[i].quantidade,com[i].preco,com[i].percentualDesconto,com[i].percentualAcrescimo,com[i].descontoMultiplo,com[i].infAdd,com[i].cancelado,com[i].valorDesconto,com[i].valorAcrescimo,com[i].impresso));
-	}
-	toastInfoNoHide("Enviando comanda...aguarde!");
 	$.ajax({
-		url: "http://"+endServ+"/services/comanda/enviar",
+		url: URL,
 		method:"POST",
 			headers: {
 				"Content-Type":"application/x-www-form-urlencoded",
 				"Accept":"application/json"
 			},
 			data: {
-				"data":JSON.stringify(itensComanda)
+				"token": token,
+				"empresa": empresa,
+				"comanda": comanda,
+				"sequencia": sequencia,
+				"produto": produto,
+				"ean": ean,
+				"vendedor": vendedor,
+				"preco": preco,
+				"quantidade": quantidade,
+				"complemento": complemento,
+				"impresso": impresso,
+				"operacao": operacao
 			},
 
 			success: function (resposta) {
 				var isOk = resposta.ok;
 					if(isOk) {
-						toastInfo("Comanda Enviada com sucesso!");
-						storage.removeItem("itsCom");
-						storage.removeItem("pedidoP"+comanda);
-
-						storage.setItem("ultimaComanda", JSON.stringify(comanda));
-						storage.removeItem("comanda");
-						window.location.replace(destino);
+						toastInfoNoHide("Comanda enviada com sucesso!");
+						limparItens();
+						window.location.replace("prevenda.html");
 					}else{
-						toastError("Não foi possível enviar comanda!");
+						toastError("Não foi possível enviar o item!");
 					}
 			},
 			error: function (erro) {
 				toastError("Não foi possível realizar o envio! Verifique Internet");
 			}
 	});
-
 }

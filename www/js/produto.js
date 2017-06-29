@@ -1,7 +1,7 @@
 /*
 *	Produto Comanda
 */
-var produtos = [];
+var produto = [];
 
 function Produto(sequencia, cod, ean, desc, complemento, preco, quantidade){
 	this.sequencia = sequencia;

@@ -52,61 +52,41 @@
                             <div class="panel panel-primary">
                                 <div class="panel-body">
                                     <div class="row" style="text-align:center;">
-                                        <h4> Comanda: <span id="txt-comanda"></span> / Vendedor: <span id="operador">Francisco</span> </h4>
+                                        <h4> Comanda: <span id="txt-comanda"></span> / Vendedor: <span id="txt-vendedor"></span> </h4>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-xs-10">
-                                            <input type="text" min="0" class="form-control" id="txt-ean" placeholder="Código ou parte da descrição...">
+                                            <input type="text" min="0" class="form-control" id="txt-ean" placeholder="Código interno ou parte da descrição...">
                                         </div>
                                         <div class="form-group col-xs-2">
                                             <button type="button" class="btn btn-block btn-primary" id="btn-pesq"><div class="visible-xs"><i class="fa fa-search"></i></div><div class="hidden-xs"><i class="fa fa-search"></i> Pesquisar</div></button>
                                         </div>
                                     </div>
                                 </div>
-
-                                <table cellpadding="0" cellspacing="0" border="0" class="table table-responsive table-hover datatables dataTable" id="tb-prods" aria-describedby="example_info">
-                                    <thead>
-                                        <tr>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Descrição: clique para ordenar" style="width: 50%;">Descrição</th>
-                                            <th  class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Preço: clique para ordenar" style="width: 20%;">Preço</th>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Qtd: clique para ordenar" style="width: 20%;">Qtd.</th>
-                                            <th  class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="InfAdd: clique para ordenar" style="width: 20%;">Inf. Add.</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td id="txt-desc" style="display: none"></td>
-                                        <td id="txt-preco" style="display: none"></td>
-										<td id="txt-qtd" style="display: none"></td>
-										<td id="txt-infadd" style="display: none"></td>
-                                    </tr>
-                                    </tbody>
+                                <span>&nbsp;</span>
+                                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered datatables" id="tb-prods">
+                  	              <thead>
+                  	                <tr>
+                  	                  <th>Descrição</th>
+                  	                  <th>Preço</th>
+                                      <th>Quantidade</th>
+                                      <th>Inf. Add.</th>
+                  	                </tr>
+                  	              </thead>
+                  	              <tbody>
+                  	              </tbody>
                                 </table>
-
                                 <div id="secao-final">
-                                    <!--style="display: none;" QUANDO FOR USAR NO JAVASCRIPT, TIRAR O COMENTÁRIO-->
-                                    <div class="panel-body">
-										<div class="form-group">
-											<div class="form-group">
-												<div class="col-md-12">
-													<button id="btn-finalizar" class="btn btn-block btn-primary btn-lg"><i class="fa fa-check"></i>  Confirmar</button>
-												</div>
-											</div>
-											<!--
-                                            <div class="form-group">
-												<div class="col-md-6">
-													<button id="btn-visualizar" class="btn btn-block btn-green btn-lg"><i class="fa fa-edit"></i>  Confirmar e visualizar</button>
-												</div>
-											</div>
-                                            -->
-										</div>
-                                    </div>
-
-                                    <!--<a id="btn-voltar" class="float-danger" href="dash.html">
-                                        <i class="fa fa-arrow-left my-float"></i>
-                                    </a>-->
-
-                                </div>
+                                  <div class="panel-body">
+                										<div class="form-group">
+                											<div class="form-group">
+                												<div class="col-md-12">
+                													<button id="btn-finalizar" class="btn btn-block btn-primary btn-lg"><i class="fa fa-check"></i>  Confirmar</button>
+                												</div>
+                											</div>
+                										</div>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -116,7 +96,6 @@
             <!--wrap -->
         <!--</div>-->
         <!-- page-content -->
-
         <footer role="contentinfo">
             <div class="clearfix">
                 <ul class="list-unstyled list-inline">
@@ -125,10 +104,8 @@
                 </ul>
             </div>
         </footer>
-
     <!--</div>-->
     <!-- page-container -->
-
     <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
     <!--<script type='text/javascript' src="js/jquery.toast.js"></script>-->
     <script type='text/javascript' src='js/bootstrap.min.js'></script>
