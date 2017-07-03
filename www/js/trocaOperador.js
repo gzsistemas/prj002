@@ -11,7 +11,7 @@ function alterar() {
   } else{
     $("#cod").removeClass("has-warning");
     var storage = window.localStorage;
-    toastInfoNoHide("Aguarde... Fazendo login!");
+    toastInfoNoHide("Aguarde...Validando!");
     var status = getStatus();
     var ssl = getSSL();
     // Criação do token
@@ -48,8 +48,10 @@ function alterar() {
         if(isOk) {
           var vendedor = resposta.extra.vendedor.vendedor;
           if(vendedor == ""){
+            toastr.clear();
             toastError("Vendedor não encontrado!");
             var vazio = "";
+            $("#cod").addClass("has-error");
             $("#txt-cod").val(vazio);
             $("#txt-cod").focus();
           } else {

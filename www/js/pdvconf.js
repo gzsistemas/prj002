@@ -1,4 +1,4 @@
-var permitirTroca = false;
+var permitirTroca = true;
 var impressaoRemota = false;
 var local = false;
 

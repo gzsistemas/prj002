@@ -412,6 +412,20 @@ function setPreco(preco) {
 	storage.setItem("preco", JSON.stringify(preco));
 }
 
+function getDescricao(){
+	var storage = window.localStorage;
+	var descricao = JSON.parse(storage.getItem("descricao"));
+	return descricao;
+}
+
+function setDescricao(descricao){
+	var storage = window.localStorage;
+	storage.setItem("descricao", JSON.stringify(descricao));
+}
+
+
+
+
 function limparItens(){
 	var storage = window.localStorage;
 	storage.removeItem("complemento");
@@ -425,14 +439,7 @@ function limparItens(){
 
 function logout(){
 	var storage = window.localStorage;
-	storage.removeItem("user");
-	storage.removeItem("ConecSeg");
-	storage.removeItem("empresa");
-	storage.removeItem("endereco-servidor");
-	storage.removeItem("password");
-	storage.removeItem("status");
-	storage.removeItem("urlbase");
-	storage.removeItem("ssl");
+	storage.clear();
 }
 
 function gerarToken(){
