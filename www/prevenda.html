@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>GZ Cloud - Pré-venda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Avant">
     <meta name="author" content="The Red Team">
-
     <link rel="stylesheet" href="css/styles.min.css?=113">
     <link href="plugins/toastr/toastr.min.css" rel="stylesheet" type='text/css'>
     <link rel='stylesheet' type='text/css' href="css/floatbutton.css">
@@ -18,19 +16,15 @@
     <link rel='stylesheet' type='text/css' href='plugins/datatables/dataTables.css' />
 </head>
 
-<body onload="onLoad()">
-    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-        <!--<a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Abrir/fechar menu"></a>-->
-
-        <div class="navbar-header pull-left">
-            <a class="navbar-brand margin-left" style="margin-left:12px"></a>
-        </div>
-
-        <ul class="nav navbar-nav pull-right toolbar">
-            <h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
-        </ul>
-    </header>
-
+<body onload="onLoad()" class="horizontal-nav">
+  <header class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header pull-left">
+          <a class="navbar-brand margin-left" style="margin-left:12px"></a>
+      </div>
+      <ul class="nav navbar-nav pull-right toolbar">
+          <h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
+      </ul>
+  </header>
     <!--<div id="page-container">-->
         <!--<nav id="page-leftbar" role="navigation">
             <ul class="acc-menu" id="sidebar">
@@ -39,12 +33,10 @@
                 <li><a id="btn-lanches" href="#"><i class="fa fa-cutlery"></i> <span>Lanches</span></a></li>
                 <li><a id="btn-sopas" href="#"><i class="fa fa-cutlery"></i> <span>Sopas</span></a></li>
                 <li><a id="btn-bebidas" href="#"><i class="fa fa-glass"></i> <span>Bebidas</span></a></li>
-
-
             </ul>
         </nav>-->
-
-        <!--<div id="page-content">-->
+      <div id="page-container">
+        <div id="page-content">
             <div id='wrap'>
                 <div class="container">
                     <div class="row">
@@ -95,7 +87,7 @@
                 <!-- container -->
             </div>
             <!--wrap -->
-        <!--</div>-->
+        </div>
         <!-- page-content -->
         <footer role="contentinfo">
             <div class="clearfix">
@@ -105,7 +97,7 @@
                 </ul>
             </div>
         </footer>
-    <!--</div>-->
+    </div>
     <!-- page-container -->
     <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
     <!--<script type='text/javascript' src="js/jquery.toast.js"></script>-->
@@ -123,13 +115,11 @@
     <script type='text/javascript' src='demo/datatables.js'></script>
     <script type='text/javascript' src='js/placeholdr.js'></script>
     <script type='text/javascript' src='js/application.js'></script>
+    <script type='text/javascript' src='js/versao.js'></script>
     <script type='text/javascript' src='js/util.js'></script>
-    <script src="js/token.js"></script>
+    <script type='text/javascript' src="js/token.js"></script>
     <script type='text/javascript' src='js/produto.js'></script>
     <script type='text/javascript' src='js/webServ.js'></script>
     <script type='text/javascript' src='js/prevenda.js'></script>
-
-
-</body>
-
+  </body>
 </html>

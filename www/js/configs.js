@@ -51,7 +51,7 @@ function guardar(){
   var user = $("#txt-usuario-cloud").val();
   var senha = $("#txt-senha-cloud").val();
   var empresa = $("#txt-empresa").val();
-  var url = "http://homologacao.gzcloud.com.br/flex-e";
+  var url = "http://homologacao.gzcloud.com.br:8080";
   var status = true;
   setUser(user);
   setSenha(senha);
