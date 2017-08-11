@@ -1,6 +1,6 @@
 /*
 	Util.JS
-	Último update: 25/04/2017
+	Último update: 11/08/2017
 */
 toastr.options = {
 	  "closeButton": false,
@@ -423,9 +423,6 @@ function setDescricao(descricao){
 	storage.setItem("descricao", JSON.stringify(descricao));
 }
 
-
-
-
 function limparItens(){
 	var storage = window.localStorage;
 	storage.removeItem("complemento");
@@ -449,10 +446,8 @@ function gerarToken(){
 	return token;
 }
 
-
-
-// função a parte que identifica e demonstra erros na tela
-window.addEventListener( 'error', function( event ){
+// função a parte que identifica e demonstra erros no console
+window.addEventListener('error', function(event){
 
 		console.log("Erro de JS:");
 		console.log("Mensagem: " + event.message);

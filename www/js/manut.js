@@ -61,7 +61,7 @@ function abrePainel(){
 			if(resultQtd == null || resultQtd == "" || resultQtd == 0)
 			{
         toastInfoNoHide("Cancelando Item...");
-        
+
         cancelaItem();
 
 			} else{
@@ -104,7 +104,7 @@ $("#btn-limpar").click(function (e) {
 });
 
 $("#btn-confirmar").click(function (e) {
-
+  toastWarning("Botão em fase de testes, função indisponível momentaneamente!");
 });
 
 $("#btn-pesquisa").click(function (e) {
