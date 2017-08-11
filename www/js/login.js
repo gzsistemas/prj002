@@ -50,7 +50,7 @@ function login() {
       var isOk = resposta.ok;
       if(isOk) {
         window.location.replace("dash.html");
-      }else{
+      }else{      
         toastError("Login inválido! Verificar configurações!");
       }
     },

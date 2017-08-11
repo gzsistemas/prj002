@@ -17,6 +17,7 @@
     <link rel='stylesheet' type='text/css' href='plugins/codeprettifier/prettify.css' />
     <link rel='stylesheet' type='text/css' href='plugins/form-toggle/toggles.css' />
     <link rel='stylesheet' type='text/css' href='plugins/datatables/dataTables.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 
 <body onload="onLoad()">
@@ -28,9 +29,12 @@
         </div>
 
         <ul class="nav navbar-nav pull-right toolbar">
-            <li>
-          		<h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
-    			  </li>
+          <li>
+              <a id="headerbardropdown"><span ><i class="fa fa-battery-0" id="bateria"></i></span></a>
+          </li>
+          <li>
+            <h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
+          </li>
 		    </ul>
     </header>
 
@@ -114,6 +118,7 @@
     <script type='text/javascript' src='js/prods.js'></script>
     <script type='text/javascript' src='js/webServ.js'></script>
     <script type='text/javascript' src='js/dash.js'></script>
+    <script type='text/javascript' src="js/testeBateria.js"></script>
 </body>
 
 </html>

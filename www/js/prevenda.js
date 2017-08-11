@@ -23,7 +23,9 @@ function pesquisa() {
 function confirmar(){
 	var storage = window.localStorage;
 	setUltimaComanda(getComanda());
+	navigator.vibrate(1000);
 	storage.removeItem("comanda");
+	sleep(1000);
 	window.location.replace("dash.html");
 }
 

@@ -8,25 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Avant">
     <meta name="author" content="The Red Team">
-
-    <!-- <link href="less/styles.less" rel="stylesheet/less" media="all">  -->
     <link rel="stylesheet" href="css/styles.min.css?=113">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
     <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" href="css/ie8.css">
-		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
-        <script type="text/javascript" src="plugins/charts-flot/excanvas.min.js"></script>
-	<![endif]-->
-
-    <!-- The following CSS are included as plugins and can be removed if unused-->
-
     <link rel='stylesheet' type='text/css' href='plugins/form-toggle/toggles.css' />
     <link rel='stylesheet' type='text/css' href="css/jquery.toast.css">
+    <link rel='stylesheet' type='text/css' href='plugins/datatables/dataTables.css' />
 </head>
 
 <body onload="getVer()">
@@ -48,7 +35,7 @@
                 <!--<li><a href="prevenda.html"><i class="fa fa-home"></i> <span>Ponto de venda</span></a></li>-->
 				<li><a href="dash.html"><i class="fa fa-home"></i> <span>Menu principal</span></a></li>
                 <li><a href="manut.html"><i class="fa fa-edit"></i> <span>Manutenção de comanda</span></a></li>
-                <li><a href="pdvconf.html"><i class="fa fa-gear"></i> <span>Opções</span></a></li>
+                <!--<li><a href="pdvconf.html"><i class="fa fa-terminal"></i> <span>Configuração do terminal</span></a></li>-->
                 <li><a href="sobre.html"><i class="fa fa-info"></i> <span>Sobre</span></a></li>
                 <li><a href="logout.html"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
             </ul>
@@ -115,18 +102,23 @@
 <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.10.2.min.js"%3E%3C/script%3E'))</script>
 <script type="text/javascript">!window.jQuery.ui && document.write(unescape('%3Cscript src="js/jqueryui-1.10.3.min.js'))</script>
 -->
-
+    <script type='text/javascript' src='plugins/datatables/jquery.dataTables.min.js'></script>
+    <script type='text/javascript' src='plugins/datatables/dataTables.bootstrap.js'></script>
+    <script type='text/javascript' src='plugins/codeprettifier/prettify.js'></script>
+    <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
+    <script type='text/javascript' src='demo/datatables.js'></script>
     <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
     <script type='text/javascript' src="js/jquery.toast.js"></script>
     <script type='text/javascript' src='js/bootstrap.min.js'></script>
     <script type='text/javascript' src='js/enquire.js'></script>
     <script type='text/javascript' src='js/jquery.cookie.js'></script>
     <script type='text/javascript' src='js/jquery.nicescroll.min.js'></script>
-    <script type='text/javascript' src='js/versao.js'></script>
-    <script type='text/javascript' src='js/util.js'></script>
-    <script type='text/javascript' src='plugins/codeprettifier/prettify.js'></script>
-    <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
     <script type='text/javascript' src='js/application.js'></script>
+    <script type='text/javascript' src='js/versao.js'></script>
+    <script type='text/javascript' src='js/util.js'></script>    
+    <script type='text/javascript' src="js/token.js"></script>
+
+
 </body>
 
 </html>

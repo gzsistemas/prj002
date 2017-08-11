@@ -47,7 +47,7 @@ function pesquisa(){
 				success: function (resposta) {
 					var isOk = resposta.ok;
 						if(isOk) {
-							setComanda(comanda);														
+							setComanda(comanda);
 							window.location.replace("prevenda.html");
 						}else{
 							var vazio = "";
@@ -103,5 +103,5 @@ $("#vendedor").click(function (e) {
 });
 
 $("#btn-ok").click(function (e) {
-    pesquisa();
+  pesquisa();
 });

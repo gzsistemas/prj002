@@ -394,7 +394,7 @@ function pesquisaComanda(){
 										tr.find(".coluna-qtd").text(produto[i].quantidade);
 										$(tr).append($("<td class='coluna-infAdd'>"));
 										tr.find(".coluna-infAdd").text(produto[i].complemento);
-										$(tr).appendTo($("#tb-prods"));										
+										$(tr).appendTo($("#tb-prods"));
 									}
 									$('.datatables').dataTable({
 										"sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
@@ -609,14 +609,4 @@ function cancelaItem(){
 				toastError("Não foi possível realizar o envio! Verifique Internet");
 			}
 	});
-}
-
-
-/*
-	Item cancelado -- Teste --
-
-	OBS: Testes
-*/
-function teste(){
-
 }

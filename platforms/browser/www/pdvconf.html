@@ -8,19 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Avant">
     <meta name="author" content="The Red Team">
-
-    <!-- <link href="less/styles.less" rel="stylesheet/less" media="all"> -->
     <link rel="stylesheet" href="css/styles.css">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <link href='plugins/form-toggle/toggles.css' rel='stylesheet' type='text/css'>
     <link href="plugins/toastr/toastr.min.css" rel="stylesheet" type='text/css'>
-
-    <!-- <script type="text/javascript" src="js/less.js"></script> -->
     <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
     <script type='text/javascript' src="js/jquery.toast.js"></script>
     <script type='text/javascript' src='js/jquery.cookie.js'></script>
     <script type='text/javascript' src='js/jquery.nicescroll.min.js'></script>
     <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
+    <link rel='stylesheet' type='text/css' href='plugins/datatables/dataTables.css' />
 </head>
 
 <body class="focusedform" onload="onLoad()">
@@ -100,7 +96,7 @@
                                 <span> Localizador </span>
                             </div>
                             <div class="col-md-2">
-                                <div id="tgl-impressao-remota" class="toggles" style="height: 20px; width: 50px;">
+                                <div id="tgl-localizar" class="toggles" style="height: 20px; width: 50px;">
                                     <div class="toggle-slide active">
                                         <div class="toggle-inner" style="width: 80px; margin-left: 0px;">
                                             <div class="toggle-on active" style="height: 20px; width: 40px; text-align: center; text-indent: -10px; line-height: 20px;">ON</div>
@@ -115,7 +111,7 @@
             </div>
             <div class="panel-footer">
                 <div class="pull-left">
-                    <input type="button" class="btn btn-block btn-default" style="padding: 5px 10px;" id="btn-cancelar" value="Cancelar" />
+                    <input type="button" class="btn btn-block btn-danger-alt" style="padding: 5px 10px;" id="btn-cancelar" value="Cancelar" />
                 </div>
                 <div class="pull-right">
                     <input type="button" class="btn btn-block btn-success" style="padding: 5px 10px;" id="btn-salvar" value="Salvar" />
@@ -124,8 +120,12 @@
         </div>
         </form>
     </div>
-	<script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
+    <script type='text/javascript' src='plugins/datatables/jquery.dataTables.min.js'></script>
+    <script type='text/javascript' src='plugins/datatables/dataTables.bootstrap.js'></script>
+    <script type='text/javascript' src='demo/datatables.js'></script>
+	  <script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
     <script type='text/javascript' src="js/util.js"></script>
+    <script src="js/token.js"></script>
     <script type='text/javascript' src="js/pdvconf.js"></script>
 </body>
 

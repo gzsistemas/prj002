@@ -9,10 +9,8 @@
     <meta name="description" content="Avant">
     <meta name="author" content="The Red Team">
 
-    <!-- <link href="less/styles.less" rel="stylesheet/less" media="all">  -->
     <link rel="stylesheet" href="css/styles.min.css?=113">
     <link rel="stylesheet" href="css/styles.css">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='styleswitcher'>
     <link href='demo/variations/default.css' rel='stylesheet' type='text/css' media='all' id='headerswitcher'>
     <link href="plugins/toastr/toastr.min.css" rel="stylesheet" type='text/css'>
@@ -21,6 +19,8 @@
     <link rel='stylesheet' type='text/css' href='plugins/charts-morrisjs/morris.css' />
     <link rel='stylesheet' type='text/css' href='plugins/codeprettifier/prettify.css' />
     <link rel='stylesheet' type='text/css' href='plugins/form-toggle/toggles.css' />
+    <link rel='stylesheet' type='text/css' href='plugins/datatables/dataTables.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 
 <body onload="onLoad()">
@@ -32,116 +32,79 @@
         </div>
 
         <ul class="nav navbar-nav pull-right toolbar">
+          <li>
+              <a id="headerbardropdown"><span ><i class="fa fa-battery-0" id="bateria"></i></span></a>
+          </li>
+          <li>
             <h5 class="margin-top margin-bottom" style="margin-left:12px;margin-right:12px;color:#fff;" id="txt-servidor"></h5>
+          </li>
         </ul>
     </header>
 
     <div id="page-container">
         <nav id="page-leftbar" role="navigation">
             <ul class="acc-menu" id="sidebar">
-                <li><a id="btn-menu" href="dash.html"><i class="fa fa-home"></i> <span>Menu principal</span></a></li>
-                <li><a href=""><i class="fa fa-edit"></i> <span>Manutenção de comanda</span></a></li>
-                    <li><a id="btn-pesquisa"><i class="fa fa-search"></i> <span>Pesquisar comanda</span></a></li>
-                        <li><a id="btn-uCom"><i class="fa fa-backward"></i> <span>Última comanda</span></a></li>				
-                        <li><a id="btn-limpar"><i class="fa fa-trash-o"></i> <span>Limpar Comanda</span></a>
-                <li><a href="pdvconf.html"><i class="fa fa-gear"></i> <span>Opções</span></a></li>
+              <li><a id="btn-menu" href="dash.html"><i class="fa fa-home"></i> <span>Menu principal</span></a></li>
+              <li class="divider"></li>
+                <li><a href="javascript:;"><i class="fa fa-edit"></i> <span>Manutenção de comanda</span></a>
+                    <ul class="acc-menu">
+                        <li><a href=""></a></li>
+                        <li><a id="btn-pesquisa"><i class="fa fa-search"></i> <span>Pesquisar comanda</span></a></li>
+                        <li><a id="btn-uCom"><i class="fa fa-backward"></i> <span>Última comanda</span></a></li>
+                        <!--<li><a id="btn-limpar"><i class="fa fa-trash-o"></i> <span>Cancelar Comanda</span></a>-->
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <!--<li><a href="pdvconf.html"><i class="fa fa-terminal"></i> <span>Configuração do terminal</span></a></li>-->
                 <li><a href="sobre.html"><i class="fa fa-info"></i> <span>Sobre</span></a></li>
             </ul>
         </nav>
 
         <div id="page-content">
-            <div id='wrap'>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-primary">
-								<div class="panel-body">
-									<div class="row" style="text-align:center;">
-                                        <h4> Comanda: <span id="txt-comanda"></span> / Vendedor: <span id="operador">Francisco</span> </h4>
-                                    </div>
-								</div>
-                                <table cellpadding="0" cellspacing="0" border="0" class="table table-responsive table-hover datatables dataTable" id="tb-prods" aria-describedby="example_info">
-                                    <thead>
-                                        <tr>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Descrição: clique para ordenar" style="width: 50%;">Descrição</th>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Preço: clique para ordenar" style="width: 20%;">Preço</th>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Qtd: clique para ordenar" style="width: 20%;">Qtd.</th>
-                                            <th class="sorting" role="columnheader" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="InfAdd: clique para ordenar" style="width: 20%;">Inf. Add.</th>							
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td id="txt-desc" style="display: none"></td>
-                                            <td id="txt-precos" style="display: none"></td>
-                                            <td id="txt-qtd" style="display: none"></td>
-                                            <td id="txt-infadd" style="display: none"></td>							
-                                        </tr>
-                                    </tbody>                                    
-                                </table>
-
-                                <div id="secao-final">
-                                    <!--style="display: none;" QUANDO FOR USAR NO JAVASCRIPT, TIRAR O COMENTÁRIO-->
-                                    <div class="panel-body">
-                                        <!--<div id="btn-finalizar" class="col-md-4 info-tiles tiles-success">
-									<div class="tiles-heading">
-										<div class="pull-center">Toque para...</div>
-									</div>
-									<div class="tiles-body">
-										<div class="pull-left"><i class="fa fa-check"></i></div>
-										<div class="pull-right">Confirmar</div>
-									</div>
-								</div>-->
-                                        <div class="form-group">
-											<!-- <div class="form-group">
-												<div class="col-md-6">
-													<button id="btn-finalizar" class="btn btn-block btn-primary btn-lg"><i class="fa fa-credit-card"></i>  Pedir a conta</button>
-												</div>
-											</div>
-											-->
-											<div class="form-group">
-												<div class="col-md-6">
-													<button id="btn-confirmar" class="btn btn-block btn-primary btn-lg"><i class="fa fa-check"></i>  Confirmar</button>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="col-md-6">
-													<button id="btn-visualizar" class="btn btn-block btn-green btn-lg"><i class="fa fa-edit"></i>  Confirmar e visualizar</button>
-												</div>
-											</div>
-												
-											<div class="form-group">
-												<div class="col-md-12" style="margin-top: 15px;">
-												    <div class="info-tiles tiles-info">
-														<div class="tiles-heading">
-															<div class="pull-center">Valor Total</div>
-														</div>
-														<div class="tiles-body">
-															<div class="pull-left"><i class="fa fa-money"></i></div>
-															<div id="txt-preco" class="pull-right"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-                                    </div>
-                                    <a id="btn-add" class="float">
-                                        <i class="fa fa-plus my-float"></i>
-                                    </a>
-                                    <div class="label-container">
-                                        <div class="label-text">Adicionar Item</div>
-                                        <i class="fa fa-play label-arrow"></i>
-                                    </div>
-                                </div>
-                            </div>
+          <div id='wrap'>
+              <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="panel panel-primary">
+								        <div class="panel-body">
+									        <div class="row" style="text-align:center;">
+                            <h4> Comanda: <span id="txt-comanda"></span> / Vendedor: <span id="txt-vendedor"></span> </h4>
+                          </div>
+								        </div>
+                        <span>&nbsp;</span>
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered datatables" id="tb-prods">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Descrição</th>
+                                      <th>Preço</th>
+                                      <th>Qtd.</th>
+                                      <th>Inf. Add.</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                          </table>
+                        <div id="secao-final">
+                          <div class="panel-body">
+                            <div class="form-group">
+        											<div class="form-group">
+        												<div class="col-md-12">
+        													<button id="btn-confirmar" class="btn btn-block btn-primary btn-lg"><i class="fa fa-check"></i>  Confirmar</button>
+        												</div>
+        											</div>
+										        </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
                 <!-- container -->
             </div>
             <!--wrap -->
         </div>
         <!-- page-content -->
-
         <footer role="contentinfo">
             <div class="clearfix">
                 <ul class="list-unstyled list-inline">
@@ -150,10 +113,8 @@
                 </ul>
             </div>
         </footer>
-
     </div>
     <!-- page-container -->
-
     <!--
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -161,8 +122,8 @@
 <script>!window.jQuery && document.write(unescape('%3Cscript src="js/jquery-1.10.2.min.js"%3E%3C/script%3E'))</script>
 <script type="text/javascript">!window.jQuery.ui && document.write(unescape('%3Cscript src="js/jqueryui-1.10.3.min.js'))</script>
 -->
-
     <script type='text/javascript' src='js/jquery-1.10.2.min.js'></script>
+    <script type='text/javascript' src='js/jqueryui-1.10.3.min.js'></script>
     <!--<script type='text/javascript' src="js/jquery.toast.js"></script>-->
     <script type='text/javascript' src='js/bootstrap.min.js'></script>
     <script type='text/javascript' src='js/enquire.js'></script>
@@ -171,16 +132,24 @@
     <script type='text/javascript' src='js/ui/jquery-ui.min.js'></script>
     <script type='text/javascript' src='plugins/codeprettifier/prettify.js'></script>
     <script type='text/javascript' src='plugins/form-toggle/toggle.min.js'></script>
-	<script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
-	<script type="text/javascript" src="plugins/bootbox/bootbox.min.js"></script>
+	  <script type="text/javascript" src="plugins/toastr/toastr.min.js"></script>
+	  <script type="text/javascript" src="plugins/bootbox/bootbox.min.js"></script>
+    <script type='text/javascript' src='plugins/datatables/jquery.dataTables.min.js'></script>
+    <script type='text/javascript' src='plugins/datatables/TableTools.js'></script>
+    <script type='text/javascript' src='plugins/jquery-editable/jquery.editable.min.js'></script>
+    <script type='text/javascript' src='plugins/datatables/dataTables.editor.js'></script>
+    <script type='text/javascript' src='plugins/datatables/dataTables.editor.bootstrap.js'></script>
+    <script type='text/javascript' src='plugins/datatables/dataTables.bootstrap.js'></script>
+    <script type='text/javascript' src='demo/demo-tableeditable.js'></script>
     <script type='text/javascript' src='js/placeholdr.js'></script>
     <script type='text/javascript' src='js/application.js'></script>
-	<script type='text/javascript' src='js/produto.js'></script>
-	<script type='text/javascript' src='js/prods.js'></script>
+	  <script type='text/javascript' src='js/produto.js'></script>
+	  <script type='text/javascript' src='js/prods.js'></script>
     <script type='text/javascript' src='js/util.js'></script>
+    <script type='text/javascript' src='js/webServ.js'></script>
+    <script src="js/token.js"></script>
     <script type='text/javascript' src='js/manut.js'></script>
-    
-
+    <script type='text/javascript' src="js/testeBateria.js"></script>
 </body>
 
 </html>

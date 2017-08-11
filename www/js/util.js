@@ -35,7 +35,7 @@ function guardarUsuario(usuario){
 }
 function getUsuario(){
     var storage = window.localStorage;
-    var usuario = JSON.parse(storage.getItem("usuario")); // Pass a key name to get its value.
+    var usuario = JSON.parse(storage.getItem("usuario"));
     return usuario;
 }
 function myToast(tipo, mensagem) {
@@ -453,6 +453,13 @@ function gerarToken(){
 
 // função a parte que identifica e demonstra erros na tela
 window.addEventListener( 'error', function( event ){
+
+		console.log("Erro de JS:");
+		console.log("Mensagem: " + event.message);
+		console.log("Em: " + event.filename);
+		console.log("Linha: " + event.lineno);
+
+		/*
     var boxError = document.createElement( 'div' );
     boxError.className  = 'box-error';
 
@@ -462,6 +469,7 @@ window.addEventListener( 'error', function( event ){
     boxError.innerHTML += '<p>Linha: '+ event.lineno +'</p>';
 
     document.body.appendChild( boxError );
+		*/
 		toastError("Ooops... Algo deu errado!");
     return false;
 });
@@ -490,4 +498,13 @@ function datatables(){
 	});
 	$('.dataTables_filter input').addClass('form-control').attr('placeholder','Procurar...');
 	$('.dataTables_length select').addClass('form-control');
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }

@@ -1,7 +1,7 @@
-var versao = "1.2.4";
+var versao = "3.0.0";
 
 function getVer(){
-	$("#versao").text("Versão " + versao);
+	$("#versao").text("Versão " + versao + " Pré-Venda" );
 }
 
 $(function () {
