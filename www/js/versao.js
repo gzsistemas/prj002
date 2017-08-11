@@ -1,4 +1,4 @@
-var versao = "2.9.5";
+var versao = "3.0.1";
 
 function getVer(){
 	$("#versao").text("Versão " + versao + " Pré-Venda" );
