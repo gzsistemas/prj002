@@ -53,7 +53,7 @@ function consultaDescricao(){
 		 procotolo = protocolo + "s";
 		}
 		protocolo = protocolo + "://";
-		var URL = protocolo + url + "/" + "/services/prevenda_mobile/cadastro/produto/listar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
+		var URL = protocolo + url + "/services/prevenda_mobile/cadastro/produto/listar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
 	}
 
 	$.ajax({
@@ -147,7 +147,7 @@ function consultaCodigo(){
 		 procotolo = protocolo + "s";
 		}
 		protocolo = protocolo + "://";
-		var URL = protocolo + url + "/" + "/services/prevenda_mobile/cadastro/produto?token=" + token + "&empresa=" + empresa + "&codigo=" + comanda
+		var URL = protocolo + url + "/services/prevenda_mobile/cadastro/produto?token=" + token + "&empresa=" + empresa + "&codigo=" + produto;
 	}
 
 	$.ajax({
@@ -255,7 +255,7 @@ function lancaProduto(){
 	var comanda = getComanda();
 	var vendedor = getVendedorCodigo();
 	if(vendedor == null){
-		vendedor = 0;
+		vendedor = 2200;
 	}
 	var operacao = "INCLUIR";
 	var impresso = false;
@@ -280,7 +280,7 @@ function lancaProduto(){
 		 procotolo = protocolo + "s";
 		}
 		protocolo = protocolo + "://";
-		var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/lancamento";
+		var URL = protocolo + url + "/services/prevenda_mobile/comanda/lancamento";
 	}
 
 	$.ajax({
@@ -308,7 +308,7 @@ function lancaProduto(){
 			success: function (resposta) {
 				var isOk = resposta.ok;
 					if(isOk) {
-						toastSuccess("Comanda enviada com sucesso!");
+						toastSuccess("Item enviado com sucesso!");
 						limparItens();
 						window.location.replace("prevenda.html");
 					}else{
@@ -356,7 +356,7 @@ function pesquisaComanda(){
 			 procotolo = protocolo + "s";
 			}
 			protocolo = protocolo + "://";
-			var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/consultar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
+			var URL = protocolo + url + "/services/prevenda_mobile/comanda/consultar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
 		}
 
 		if(checarVazio(comanda) != true){
@@ -457,7 +457,7 @@ function alteraItem(){
 	var comanda = getComanda();
 	var vendedor = getVendedorCodigo();
 	if(vendedor == null){
-		vendedor = 0;
+		vendedor = 2200;
 	}
 	var operacao = "ALTERAR";
 	var impresso = false;
@@ -482,7 +482,7 @@ function alteraItem(){
 		 procotolo = protocolo + "s";
 		}
 		protocolo = protocolo + "://";
-		var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/lancamento";
+		var URL = protocolo + url + "/services/prevenda_mobile/comanda/lancamento";
 	}
 
 	$.ajax({
@@ -545,7 +545,7 @@ function cancelaItem(){
 	var comanda = getComanda();
 	var vendedor = getVendedorCodigo();
 	if(vendedor == null){
-		vendedor = 0;
+		vendedor = 2200;
 	}
 	var operacao = "CANCELAR";
 	var impresso = false;
@@ -570,7 +570,7 @@ function cancelaItem(){
 		 procotolo = protocolo + "s";
 		}
 		protocolo = protocolo + "://";
-		var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/lancamento";
+		var URL = protocolo + url + "/services/prevenda_mobile/comanda/lancamento";
 	}
 
 	$.ajax({

@@ -33,7 +33,7 @@ function alterar() {
        procotolo = protocolo + "s";
       }
       protocolo = protocolo + "://";
-      var URL = protocolo + url + "/" + "/services/cadastro/vendedor?token=" + token + "&empresa=" + empresa + "&codigo=" + codigo;
+      var URL = protocolo + url + "/services/cadastro/vendedor?token=" + token + "&empresa=" + empresa + "&codigo=" + codigo;
     }
     $.ajax({
       url:URL,

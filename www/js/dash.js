@@ -28,7 +28,7 @@ function pesquisa(){
 		 procotolo = protocolo + "s";
 		}
 		protocolo = protocolo + "://";
-		var URL = protocolo + url + "/" + "/services/prevenda_mobile/comanda/consultar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
+		var URL = protocolo + url + "/services/prevenda_mobile/comanda/consultar?token=" + token + "&empresa=" + empresa + "&comanda=" + comanda
 	}
 
 	if(checarVazio(comanda) != true){
