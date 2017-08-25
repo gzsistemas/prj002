@@ -32,6 +32,7 @@ function pesquisa(){
 	}
 
 	if(checarVazio(comanda) != true){
+		toastr.remove();
 		toastInfoNoHide("Pesquisando comanda...Aguarde!");
 			$.ajax({
 				url: URL,
@@ -63,11 +64,13 @@ function pesquisa(){
 						}
 				},
 				error: function (erro) {
+					toastr.remove();
 					toastError("Não foi possível pesquisar a comanda!");
 				}
 			});
 
 	}else{
+		toastr.remove();
 		toastError("Digite uma comanda para continuar!");
 		document.getElementById("txt-com").select();
 	}

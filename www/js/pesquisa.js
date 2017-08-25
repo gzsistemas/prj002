@@ -102,7 +102,7 @@ $("#tb-prods").on("click", '.coluna-descricao', function(event){
 	var codigo = col1value.split(" ", 1);
 
 	for(var i = 0; i<produtos.length; i++){
-		if(codigo == produtos[i].ean){
+		if(codigo == produtos[i].ean.trim()){
 			setProduto(produtos[i].codigo);
 			setEan(produtos[i].ean);
 			setPreco(produtos[i].preco);

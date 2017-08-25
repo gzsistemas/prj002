@@ -131,7 +131,7 @@ function setUrlbase(url){
 	var storage = window.localStorage;
 	storage.setItem("urlbase", JSON.stringify(url));
 }
-// O status serve para separar usuários cloud de usuários com servidor interno
+// O status serve para separar usuários cloud de usuários com servidor interno --
 function getStatus(){
 	var storage = window.localStorage;
 	var status = JSON.parse(storage.getItem("status"));
@@ -142,6 +142,7 @@ function setStatus(status){
 	var storage = window.localStorage;
 	storage.setItem("status", JSON.stringify(status));
 }
+// ------------------------------------------------------------------------------
 
 function getSSL(){
 	var storage = window.localStorage;
@@ -328,6 +329,7 @@ window.addEventListener('error', function(event){
 
     document.body.appendChild( boxError );
 		*/
+	
 		toastError("Ooops... Algo deu errado!");
     return false;
 });
