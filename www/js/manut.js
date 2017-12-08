@@ -19,7 +19,8 @@ function onLoad(){
 }
 
 function confirmar() {
-
+  toastSuccess("Comanda salva com sucesso!");
+  window.location.replace("dash.html");
 }
 
 function comanda() {
@@ -79,6 +80,7 @@ function abrePainel(){
 }
 
 $("#tb-prods").on("click", '.coluna-descricao', function(event){
+  var status = false;
 	var index = $(this).index();
 	var col1value = $(this).parent().find(".coluna-sequencia").first().text();
 
@@ -92,11 +94,17 @@ $("#tb-prods").on("click", '.coluna-descricao', function(event){
       setDescricao(produto[i].descricao);
       setQuantidade(produto[i].quantidade);
       setSequencia(produto[i].sequencia);
+      if(produto[i].status == true){
+        status = true;
+      }
 			break;
 		}
 	}
-
-	abrePainel();
+  if(status == true){
+    toastError("Produto já cancelado!");
+  } else{
+    abrePainel();
+  }
 });
 
 $("#btn-limpar").click(function (e) {
@@ -104,7 +112,7 @@ $("#btn-limpar").click(function (e) {
 });
 
 $("#btn-confirmar").click(function (e) {
-  toastWarning("Botão em fase de testes, função indisponível momentaneamente!");
+  confirmar();
 });
 
 $("#btn-pesquisa").click(function (e) {

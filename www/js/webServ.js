@@ -387,7 +387,7 @@ function pesquisaComanda(){
 								prods = resposta.extra.comanda.comanda_item;
 								// Criação dos produtos
 								for(var i = 0; i<prods.length; i++){
-									produto.push(new Produto(prods[i].sequencia, prods[i].codigo, prods[i].ean, prods[i].descricao,prods[i].complemento, prods[i].precoVenda, prods[i].quantidade));
+									produto.push(new Produto(prods[i].sequencia, prods[i].codigo, prods[i].ean, prods[i].descricao,prods[i].complemento, prods[i].precoVenda, prods[i].quantidade, prods[i].cancelado));
 									setSequencia(prods[i].sequencia);
 								}
 								if(produto == null){
@@ -405,6 +405,13 @@ function pesquisaComanda(){
 										tr.find(".coluna-qtd").text(produto[i].quantidade);
 										$(tr).append($("<td class='coluna-infAdd'>"));
 										tr.find(".coluna-infAdd").text(produto[i].complemento);
+										if(produto[i].status == true){
+												tr.find(".coluna-sequencia").css({backgroundColor: '#CD3333'});
+												tr.find(".coluna-descricao").css({backgroundColor: '#CD3333'});
+												tr.find(".coluna-preco").css({backgroundColor: '#CD3333'});
+												tr.find(".coluna-qtd").css({backgroundColor: '#CD3333'});
+												tr.find(".coluna-infAdd").css({backgroundColor: '#CD3333'});
+										}
 										$(tr).appendTo($("#tb-prods"));
 									}
 									$('.datatables').dataTable({

@@ -63,7 +63,7 @@ function pesquisa(){
               });
 						}
 				},
-				error: function (erro) {
+				error: function (erro) { 
 					toastr.remove();
 					toastError("Não foi possível pesquisar a comanda!");
 				}

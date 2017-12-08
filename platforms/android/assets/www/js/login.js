@@ -21,7 +21,6 @@ function login() {
   var ssl = getSSL();
   // Criação do token
   var token = gerarToken();
-
   // ------
   var URL = "";
   // Parte que decide qual url usar
@@ -36,7 +35,7 @@ function login() {
      procotolo = protocolo + "s";
     }
     protocolo = protocolo + "://";
-    var URL = protocolo + url + "/" + "/services/mobile/login?token=" + token;
+    var URL = protocolo + url + "/services/mobile/login?token=" + token;
   }
   $.ajax({
     url:URL,
@@ -50,7 +49,7 @@ function login() {
       var isOk = resposta.ok;
       if(isOk) {
         window.location.replace("dash.html");
-      }else{      
+      }else{
         toastError("Login inválido! Verificar configurações!");
       }
     },
