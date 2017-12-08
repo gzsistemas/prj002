@@ -46,7 +46,7 @@ function alterar() {
 
         var isOk = resposta.ok;
         if(isOk) {
-          var vendedor = resposta.extra.vendedor.vendedor;
+          var vendedor = resposta.extra.lista_vendedor.vendedor;
           if(vendedor == ""){
             toastr.clear();
             toastError("Vendedor não encontrado!");
@@ -55,8 +55,8 @@ function alterar() {
             $("#txt-cod").val(vazio);
             $("#txt-cod").focus();
           } else {
-            var nome = resposta.extra.vendedor.vendedor[0].nome;
-            var codigo = resposta.extra.vendedor.vendedor[0].codigo;
+            var nome = resposta.extra.lista_vendedor.vendedor[0].nome;
+            var codigo = resposta.extra.lista_vendedor.vendedor[0].codigo;
             setVendedorNome(nome);
             setVendedorCodigo(codigo);
             window.location.replace("dash.html");
